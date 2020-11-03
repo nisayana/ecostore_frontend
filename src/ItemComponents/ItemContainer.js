@@ -4,10 +4,10 @@ import ItemCard from './ItemCard';
 class ItemContainer extends React.Component {
     render() {
         console.log("from ItemContainer", this.props)
-        let arrayOfItems = this.props.category.map((items) => {
+        let arrayOfItems = this.props.category.items.map((item) => {
             return <ItemCard
-                key={items.id}
-                items={items} />
+                key={item.id}
+                item={item} />
         })
         return (
             <div id="item-collection">

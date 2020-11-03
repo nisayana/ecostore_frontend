@@ -5,7 +5,7 @@ const NavBar = () => {
     return(
         <ul className="nav">
             <li>
-                <NavLink to="/">About</NavLink>
+                <NavLink to="/about">About</NavLink>
             </li>
             <li>
                 <NavLink to="/">Home</NavLink>
@@ -14,7 +14,10 @@ const NavBar = () => {
                 <NavLink to="/login">Login</NavLink>
             </li>
             <li>
-                <NavLink to="/items">My account</NavLink>
+                <NavLink to="/register">Register</NavLink>
+            </li>
+            <li>
+                <NavLink to="/profile">My profile</NavLink>
             </li>
         </ul>
     )

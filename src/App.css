@@ -38,6 +38,16 @@ body {
   width: 18rem;
 }
 
+#item-collection {
+  margin: 2rem;
+}
+
+.item-image {
+  justify-self: center;
+  height: 14rem;
+  width: 20rem;
+}
+
 button {
   position: relative;
   background-color: #4b87e0;

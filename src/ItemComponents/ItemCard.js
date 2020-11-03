@@ -1,14 +1,23 @@
 import React from 'react';
 
 class ItemCard extends React.Component {
+
+    // addToMy
+
+    handleClick = () => {
+
+    }
+
     render() {
 
-        let {name, image} = this.props.items
-        console.log(this)
+        let {name, image, price} = this.props.item
+        // console.log(this)
         return(
-            <div>
+            <div className="card">
                 <h1>{name}</h1>
-        
+                <img src={image} alt={name} className="item-image" />
+                <h2>{price}$</h2>
+                <button className="button" onClick={this.handleClick}>Book</button>
             </div>
         )
     }

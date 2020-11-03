@@ -4,7 +4,7 @@ import CategoryContainer from './CategoryContainer'
 class HomeContainer extends React.Component {
 
   render() {
-    console.log(this)
+    // console.log(this)
     return(
       <div>
         <h1 id="header">Rossman Yoga</h1>
