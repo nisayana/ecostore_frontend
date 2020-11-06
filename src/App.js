@@ -7,21 +7,24 @@ import ItemContainer from './ItemComponents/ItemContainer';
 import LoginForm from './HomeComponents/LoginForm'
 import RegisterForm from './HomeComponents/RegisterForm'
 import About from './HomeComponents/About'
-
-import {Switch, Route, withRouter} from 'react-router-dom'
+import Cart from './HomeComponents/Cart'
+import {Switch, Route, withRouter, Redirect} from 'react-router-dom'
+import PastOrders from './HomeComponents/PastOrders'
+import Profile from './HomeComponents/Profile';
 
 
 class App extends React.Component {
 
   state = {
+    // id: 0,
     categories: [],
     token: "",
     username: "",
     current_booking: {
       id: 0,
-      item_orders: []
+      joiners: []
     },
-    past_booking: []
+    past_bookings: []
   }
 
   componentDidMount() {
@@ -48,14 +51,19 @@ class App extends React.Component {
   handleLogOut = () => {
     this.setState({
       id: 0,
-      name: "",
-      token: ""
+      username: "",
+      token: "",
+      current_booking: {
+        id: 0,
+        joiners: []
+      },
+      past_bookings: []
     })
     localStorage.clear()
   }  
 
   handleLoginSubmit = (userInfo) => {
-    // console.log("from LoginSubmit", this)
+    console.log("Login form has been submitted")
     fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
@@ -67,8 +75,8 @@ class App extends React.Component {
       })
     })
       .then(res => res.json())
-      .then(this.helpHandleLoginResponse)
-      // this.props.history.push("/")
+      .then(this.helpHandleResponse)
+      this.props.history.push("/")
   }
 
 
@@ -81,50 +89,63 @@ class App extends React.Component {
         "Content-Type": "Application/json"
       },
       body: JSON.stringify({
-        name: userInfo.name,
+        username: userInfo.name,
         password: userInfo.password,
         email: userInfo.email
       })
     })
     .then(res => res.json())
     .then(this.helpHandleResponse)
+    // this.props.history.push("/")
   }
 
   helpHandleResponse = (resp) => {
-    console.log("response", resp)
+    // console.log("response", resp)
     if(resp.error){
-      console.log(resp.error)
+      console.error(resp.error)
     } else {
       localStorage.token = resp.token
       this.setState({
-        id: resp.user.id,
+        // id: resp.user.id,
         token: resp.token,
         username: resp.user.username,
         current_booking: resp.user.current_booking,
-        past_booking: resp.user.past_booking
+        past_bookings: resp.user.past_bookings
       })
+      // this.props.history.push("/profile")
     }
   }
 
-
-  helpHandleLoginResponse = (resp) => {
-    if(resp.error){
-      console.log(resp.error)
-    } else {
-      localStorage.token = resp.token
-      this.setState({
-        id: resp.user.id,
-        username: resp.user.username,
-        token: resp.token
-      })
+  renderProfile = () => {
+    if(this.state.token){
+      return <Profile 
+        username={this.state.username}
+        past_bookings={this.state.past_bookings}
+        handleLogOut={this.handleLogOut}
+      />
+    } else{
+      return <Redirect to="login"/>
     }
   }
+
+  // helpHandleLoginResponse = (resp) => {
+  //   if(resp.error){
+  //     console.error(resp.error)
+  //   } else {
+  //     localStorage.token = resp.token
+  //     this.setState({
+  //       id: resp.user.id,
+  //       username: resp.user.username,
+  //       token: resp.token
+  //     })
+  //   }
+  // }
 
 
 
   renderForm = (routerProps) => {
     if(this.state.token){
-      return <button className='logout' onClick={this.handleLogOut}>Logged in as {this.state.username}</button>
+      return <button className='logout' onClick={this.handleLogOut}>Log out</button>
     }
     if(routerProps.location.pathname === "/login"){
       return <LoginForm
@@ -144,26 +165,85 @@ class App extends React.Component {
     // console.log("router props", routerProps)
     let givenId = routerProps.match.params.id 
     // console.log("givenId", givenId)
-    let foundCategory = this.state.categories.find((categoryPojo) => {
+    let selectedCategory = this.state.categories.find((categoryPojo) => {
       // console.log("categoryPojo", categoryPojo)
       return categoryPojo.id === parseInt(givenId)
     })
-    if (foundCategory) {
+    if (selectedCategory) {
         return <ItemContainer 
-        category = {foundCategory} 
+        category = {selectedCategory} 
         token = {this.state.token}
-        past_booking = {this.state.past_booking}
+        past_bookings = {this.state.past_bookings}
         current_booking = {this.state.current_booking}
+        addToMyBookings = {this.addToMyBookings}
+
         />
     } else {
         return <NotFound />
     }
   }
 
+  addToMyBookings = (item_id) => {
+    fetch("http://localhost:3000/joiners", {
+      method: "POST",
+      headers: {
+        "Content-Type": "Application/json"
+      },
+      body: JSON.stringify({
+        item_id: item_id,
+        order_id: this.state.current_booking.id
+      })
+    })
+    .then(res => res.json())
+    .then(newBooking => {
+      // debugger
+      let copyOfJoinersForCart = [...this.state.current_booking.joiners, newBooking]
+      // console.log(copyOfJoinersForCart)
+      let copyOfCart = {
+        ...this.state.current_booking,
+        joiners: copyOfJoinersForCart
+      }  
+      this.setState({
+        current_booking: copyOfCart
+      })
+    })
+  }
+
+  currentCartIntoPastOrder = () => {
+    fetch(`http://localhost:3000/orders/${this.state.current_booking.id}/transform`, {
+      method: "PATCH",
+      headers: {
+        "Authorization": this.state.token
+      }
+    })
+      .then(res => res.json())
+      .then((resp) => {
+        let copyOfPastOrders = [...this.state.past_bookings, resp.transformed_cart]
+        this.setState({
+          current_booking: resp.current_booking,
+          past_bookings: copyOfPastOrders
+        })
+      })
+  }
+
+  // rednerProfile = (routerProps) => {
+  //   if(this.state.token){
+  //     return <Profile
+  //       username={this.state.username}
+  //       current_booking={this.state.current_booking}
+  //       past_bookings={this.state.password}
+  //       id={this.state.id}
+  //       token={this.state.token}
+  //     />
+  //   } else {
+  //     return <Redirect to="/login"/>
+  //   }
+  // }
+
   
 
   render() {
-    // console.log("categories", this.state)
+    // console.log("app.js", this.state.current_booking)
     return(
       <div className="App">
         <NavBar/>
@@ -175,7 +255,20 @@ class App extends React.Component {
           <Route path='/about' component={About}/>
           <Route path='/login' render={this.renderForm}/>
           <Route path="/register" render={this.renderForm}/>
+          <Route path="/profile" render={this.renderProfile}/>
 
+          <Route path="/cart">
+            <Cart
+            currentCartIntoPastOrder={this.currentCartIntoPastOrder}
+            current_booking={this.state.current_booking}
+            // past_bookings={this.state.past_bookings}
+            />
+          </Route>
+          <Route path="/past-orders">
+            <PastOrders
+            past_bookings={this.state.past_bookings}
+            />
+          </Route>
         </Switch>
       </div>
     )

@@ -5,13 +5,13 @@ class ItemCard extends React.Component {
     // addToMy
 
     handleClick = () => {
-
+        this.props.addToMyBookings(this.props.item.id)
     }
 
     render() {
 
         let {name, image, price} = this.props.item
-        // console.log(this)
+        // console.log(this.props)
         return(
             <div className="card">
                 <h1>{name}</h1>

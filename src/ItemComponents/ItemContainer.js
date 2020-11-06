@@ -3,11 +3,13 @@ import ItemCard from './ItemCard';
 
 class ItemContainer extends React.Component {
     render() {
-        console.log("from ItemContainer", this.props)
+        // console.log("from ItemContainer", this.props)
         let arrayOfItems = this.props.category.items.map((item) => {
             return <ItemCard
                 key={item.id}
-                item={item} />
+                item={item} 
+                addToMyBookings={this.props.addToMyBookings}
+            />
         })
         return (
             <div id="item-collection">

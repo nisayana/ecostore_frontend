@@ -111,3 +111,12 @@ button:hover {
   font-family: monospace;
   margin: 3px;
 }
+
+.order {
+  text-align: center;
+  grid-area: m;
+}
+
+#order-list {
+  padding: 0;
+}
