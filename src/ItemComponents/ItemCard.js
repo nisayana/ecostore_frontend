@@ -2,8 +2,6 @@ import React from 'react';
 
 class ItemCard extends React.Component {
 
-    // addToMy
-
     handleClick = () => {
         this.props.addToMyBookings(this.props.item.id)
     }

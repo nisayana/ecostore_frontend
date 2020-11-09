@@ -7,10 +7,13 @@ import ItemContainer from './ItemComponents/ItemContainer';
 import LoginForm from './HomeComponents/LoginForm'
 import RegisterForm from './HomeComponents/RegisterForm'
 import About from './HomeComponents/About'
-import Cart from './HomeComponents/Cart'
+import Checkout from './HomeComponents/Checkout'
 import {Switch, Route, withRouter, Redirect} from 'react-router-dom'
 import PastOrders from './HomeComponents/PastOrders'
 import Profile from './HomeComponents/Profile';
+import Calendar from './HomeComponents/Calendar';
+import MainContainer from './ItemComponents/MainContainer';
+
 
 
 class App extends React.Component {
@@ -120,7 +123,8 @@ class App extends React.Component {
     if(this.state.token){
       return <Profile 
         username={this.state.username}
-        past_bookings={this.state.past_bookings}
+        // past_bookings={this.state.past_bookings}
+        current_booking={this.state.current_booking}
         handleLogOut={this.handleLogOut}
       />
     } else{
@@ -170,18 +174,21 @@ class App extends React.Component {
       return categoryPojo.id === parseInt(givenId)
     })
     if (selectedCategory) {
-        return <ItemContainer 
+        console.log(this)
+        return <MainContainer 
         category = {selectedCategory} 
         token = {this.state.token}
         past_bookings = {this.state.past_bookings}
         current_booking = {this.state.current_booking}
         addToMyBookings = {this.addToMyBookings}
-
+        deleteMyBooking = {this.deleteMyBooking}
         />
     } else {
         return <NotFound />
     }
   }
+
+
 
   addToMyBookings = (item_id) => {
     fetch("http://localhost:3000/joiners", {
@@ -209,6 +216,32 @@ class App extends React.Component {
     })
   }
 
+
+  deleteMyBooking = (joiner) => {
+    // console.log(joiner)
+    fetch(`http://localhost:3000/joiners/${joiner.id}`, {
+      method: "DELETE"
+
+    })
+    .then(res => res.json())
+    .then(deletedItem => {
+      console.log(deletedItem)
+      let updatedJoinerCart = this.state.current_booking.joiners.filter(item => {
+        return item.id !== deletedItem.joiner.id
+      })
+      let copyOfCart = {
+        ...this.state.current_booking,
+        joiners: updatedJoinerCart
+      }  
+      // console.log(updatedJoinerCart)
+      this.setState({
+        current_booking: copyOfCart
+      })
+    })
+  }
+
+
+
   currentCartIntoPastOrder = () => {
     fetch(`http://localhost:3000/orders/${this.state.current_booking.id}/transform`, {
       method: "PATCH",
@@ -218,6 +251,7 @@ class App extends React.Component {
     })
       .then(res => res.json())
       .then((resp) => {
+        console.log(resp)
         let copyOfPastOrders = [...this.state.past_bookings, resp.transformed_cart]
         this.setState({
           current_booking: resp.current_booking,
@@ -226,24 +260,24 @@ class App extends React.Component {
       })
   }
 
-  // rednerProfile = (routerProps) => {
-  //   if(this.state.token){
-  //     return <Profile
-  //       username={this.state.username}
-  //       current_booking={this.state.current_booking}
-  //       past_bookings={this.state.password}
-  //       id={this.state.id}
-  //       token={this.state.token}
-  //     />
-  //   } else {
-  //     return <Redirect to="/login"/>
-  //   }
-  // }
+  rednerProfile = (routerProps) => {
+    if(this.state.token){
+      return <Profile
+        username={this.state.username}
+        current_booking={this.state.current_booking}
+        past_bookings={this.state.password}
+        id={this.state.id}
+        token={this.state.token}
+      />
+    } else {
+      return <Redirect to="/login"/>
+    }
+  }
 
   
 
   render() {
-    // console.log("app.js", this.state.current_booking)
+    console.log("app.js", this.state)
     return(
       <div className="App">
         <NavBar/>
@@ -251,14 +285,15 @@ class App extends React.Component {
           <Route path="/" exact render={() => < HomeContainer
             categories={this.state.categories}
           />} />
-          <Route path='/categories/:id/items' exact render={ this.renderSpecificCategory } />
+          <Route path='/categories/:id' exact render={this.renderSpecificCategory} />
           <Route path='/about' component={About}/>
           <Route path='/login' render={this.renderForm}/>
           <Route path="/register" render={this.renderForm}/>
           <Route path="/profile" render={this.renderProfile}/>
+          {/* <Route path="/checkout" render={this.renderProfile}/> */}
 
-          <Route path="/cart">
-            <Cart
+          <Route path="/checkout">
+            <Checkout
             currentCartIntoPastOrder={this.currentCartIntoPastOrder}
             current_booking={this.state.current_booking}
             // past_bookings={this.state.past_bookings}

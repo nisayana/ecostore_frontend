@@ -1,6 +1,6 @@
 import React from 'react';
 import CategoryCard from './CategoryCard';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 
 class CategoryContainer extends React.Component {
     // handleClick = () => {

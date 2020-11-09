@@ -5,7 +5,7 @@ const Cart = (props) => {
 //     return agg + b_order.burger_price
 //   }, 0)
 
-    // console.log("cart", props.current_booking.joiners)
+    console.log("cart", props)
 
   const handleClick = (e) => {
     props.currentCartIntoPastOrder()
@@ -13,7 +13,7 @@ const Cart = (props) => {
 
   const arrOfComps = () => {
 
-    if (props.current_booking.joiners){
+    if (props.current_booking){
       return props.current_booking.joiners.map(joiner => <p key={joiner.id}>{joiner.item_name}</p>)
   }
 }

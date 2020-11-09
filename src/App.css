@@ -6,9 +6,9 @@ body {
 #header {
   display: flex;
   justify-content: center;
-  background: #e3e6f7;
+  background: #bedaf5;
   opacity: .8;
-  height: 7rem;
+  height: 3rem;
   padding: 1rem;
 }
 
@@ -50,10 +50,10 @@ body {
 
 button {
   position: relative;
-  background-color: #4b87e0;
+  background-color: #131518;
   border: none;
   border-radius: 5px;
-  height: 3rem;
+  height: 2rem;
   width: max-content;
   color: whitesmoke;
   font-size: 18px;
@@ -75,7 +75,7 @@ button:hover {
   padding: 1rem;
   width: stretch;
   height: auto;
-  background: #515DA2;
+  /* background: #515DA2; */
   opacity: .8;
 }
 
@@ -114,9 +114,49 @@ button:hover {
 
 .order {
   text-align: center;
-  grid-area: m;
+  grid-area: o;
 }
 
 #order-list {
   padding: 0;
+}
+
+.container {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 50px 350px 50px;
+  grid-template-areas:
+    "h h h h h h h h h h h h"
+    "m m c c c c c c c o o o "
+}
+
+.menu {
+  grid-area: c;
+}
+
+ul.nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #333;
+}
+
+ul.nav li {
+  float: left;
+}
+
+ul.nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul.nav li a:hover {
+  background-color: #111;
 }
