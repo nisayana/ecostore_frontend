@@ -11,7 +11,7 @@ import Checkout from './HomeComponents/Checkout'
 import {Switch, Route, withRouter, Redirect} from 'react-router-dom'
 import PastOrders from './HomeComponents/PastOrders'
 import Profile from './HomeComponents/Profile';
-import Calendar from './HomeComponents/Calendar';
+import Calendar from './Calendar';
 import MainContainer from './ItemComponents/MainContainer';
 
 
