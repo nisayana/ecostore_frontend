@@ -8,12 +8,12 @@ class ItemCard extends React.Component {
 
     render() {
 
-        let {name, image, price} = this.props.item
+        let {name, price} = this.props.item
         // console.log(this.props)
         return(
             <div className="card">
                 <h1>{name}</h1>
-                <img src={image} alt={name} className="item-image" />
+                {/* <img src={image} alt={name} className="item-image" /> */}
                 <h2>{price}$</h2>
                 <button className="button" onClick={this.handleClick}>Book</button>
             </div>

@@ -12,7 +12,7 @@ class CategoryCard extends React.Component {
         let {name, image, description, id} = this.props.categoryCard
 
         return(
-            <div className="card">
+            <div className="category-card">
                 <Link to={`/categories/${id}`}>
                     <img src={image} alt={this.props.categoryCard.name} onClick={this.handleClick} className="category-image" />
                     <h2>{this.props.categoryCard.name}</h2>

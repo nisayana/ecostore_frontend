@@ -13,7 +13,7 @@ class CategoryContainer extends React.Component {
             return <CategoryCard categoryCard={categoryObj} key={categoryObj.id}/>
         })
         return (
-            <div id="category-collection">
+            <div id="categories-collection">
                 {categoryCard}
             </div>
         )

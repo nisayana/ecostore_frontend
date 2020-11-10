@@ -11,8 +11,9 @@ import Checkout from './HomeComponents/Checkout'
 import {Switch, Route, withRouter, Redirect} from 'react-router-dom'
 import PastOrders from './HomeComponents/PastOrders'
 import Profile from './HomeComponents/Profile';
-import Calendar from './Calendar';
 import MainContainer from './ItemComponents/MainContainer';
+// import Calendar from './Calendar';
+// import './index.css'
 
 
 
@@ -290,8 +291,6 @@ class App extends React.Component {
           <Route path='/login' render={this.renderForm}/>
           <Route path="/register" render={this.renderForm}/>
           <Route path="/profile" render={this.renderProfile}/>
-          {/* <Route path="/checkout" render={this.renderProfile}/> */}
-
           <Route path="/checkout">
             <Checkout
             currentCartIntoPastOrder={this.currentCartIntoPastOrder}
@@ -304,6 +303,7 @@ class App extends React.Component {
             past_bookings={this.state.past_bookings}
             />
           </Route>
+          {/* <Route path='/calendar' component={Calendar}/> */}
         </Switch>
       </div>
     )

@@ -4,6 +4,7 @@ import StripeCheckout from 'react-stripe-checkout'
 class StripeComponent extends React.Component { 
 
     render(){
+        // console.log(this.props)
 
         function onToken(token) {
             // save the token id to a variable to then use it in the body of the fetch.
@@ -36,7 +37,7 @@ class StripeComponent extends React.Component {
                     // provide input for billing address.
                     billingAddress
                 >
-                    <button>CHECKOUT PAY </button>
+                    {/* <button onClick={this.props.sentToPastOrders}> PAY </button> */}
                 </StripeCheckout>
             </div>
         );

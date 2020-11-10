@@ -3,12 +3,12 @@ body {
   font-family: monospace;
 }
 
-#header {
+#header-home {
   display: flex;
   justify-content: center;
   background: #bedaf5;
   opacity: .8;
-  height: 3rem;
+  height: 5rem;
   padding: 1rem;
 }
 
@@ -17,16 +17,16 @@ body {
   width: auto;
 }
 
-#category-collection {
+#categories-collection {
   margin: 2rem;
 }
 
-.card {
+.category-card {
   text-align: center;
   border: grey solid 1px;
   padding: 1rem;
   width: 20rem;
-  height: 25rem;
+  height: 30rem;
   display: inline-grid;
   margin: 1rem 2rem;
   box-shadow: 3px 4px #e9dfe0
@@ -160,3 +160,4 @@ ul.nav li a {
 ul.nav li a:hover {
   background-color: #111;
 }
+
