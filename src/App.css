@@ -6,15 +6,10 @@ body {
 #header-home {
   display: flex;
   justify-content: center;
-  background: #bedaf5;
+  background: #ffffff;
   opacity: .8;
-  height: 5rem;
+  height: 2rem;
   padding: 1rem;
-}
-
-#toy-header img {
-  height: 6rem;
-  width: auto;
 }
 
 #categories-collection {
@@ -53,10 +48,10 @@ button {
   background-color: #131518;
   border: none;
   border-radius: 5px;
-  height: 2rem;
+  height: 1rem;
   width: max-content;
   color: whitesmoke;
-  font-size: 18px;
+  font-size: 12px;
   justify-self: center;
 }
 
@@ -67,8 +62,8 @@ button {
 
 button:hover {
   background-color: whitesmoke;
-  border: #e04b52 solid 1px;
-  color: #e04b52;
+  border: #bedaf5 solid 1px;
+  color: #bedaf5;
 }
 
 .container {
@@ -77,10 +72,6 @@ button:hover {
   height: auto;
   /* background: #515DA2; */
   opacity: .8;
-}
-
-.add-toy-form {
-  width: 80%
 }
 
 .submit {
@@ -137,12 +128,12 @@ button:hover {
 
 ul.nav {
   list-style-type: none;
-  margin: 0;
+  margin: 2;
   padding: 0;
   overflow: hidden;
   display: flex;
   justify-content: space-evenly;
-  background-color: #333;
+  background-color: #bedaf5;
 }
 
 ul.nav li {
@@ -151,13 +142,94 @@ ul.nav li {
 
 ul.nav li a {
   display: block;
-  color: white;
+  color: rgb(7, 7, 7);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
 ul.nav li a:hover {
-  background-color: #111;
+  background-color: rgb(171, 184, 224);
+}
+
+#nav-bar-container .ui.primary.button {
+  font-size: 16px;
+}
+
+/* .logo {
+  position: relative;
+  margin-left: -240px;
+}
+
+.logo-text {
+  color: #2585d4;
+  font-size: 110px;
+  font-family: "Pacifico", cursive;
+  position: absolute;
+  top: 25%;
+} */
+
+#log-in-form {
+  margin: auto;
+  margin-bottom: 20px;
+  width: 300px;
+  padding-top: 30px;
+}
+
+#log-in-form .header {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+#log-in-form .ui.button {
+  color: white;
+  background-color: #2585d4;
+}
+
+#log-in-form .field label {
+  text-align: left;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+
+#item-card .content .header {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#item-card .content .meta {
+  font-size: 14px;
+  color: grey;
+}
+
+#item-card .image {
+  margin: 10px;
+  background-color: white;
+  cursor: pointer;
+}
+
+#item-card .image img {
+  height: 200px;
+  width: 100%;
+  object-fit: contain;
+}
+
+#item-card #item-delete-icon {
+  position: absolute;
+  right: 3px;
+  top: 8px;
+  color: #2585d4;
+  cursor: pointer;
+}
+
+#item-card #item-edit-icon {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  color: #2585d4;
+  cursor: pointer;
 }
 

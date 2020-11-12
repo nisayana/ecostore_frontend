@@ -6,7 +6,7 @@ class StripeComponent extends React.Component {
     render(){
         // console.log(this.props)
 
-        function onToken(token) {
+        let onToken = (token) => {
             // save the token id to a variable to then use it in the body of the fetch.
             const charge = {
                 token: token.id
@@ -21,13 +21,18 @@ class StripeComponent extends React.Component {
                 body: JSON.stringify({ 
                     // Stripe API need at least a token and a price.
                     charge: charge,
-                    // price: this.props.total.totalSum * 100
+                    
+                    price: this.props.price
                 })
             })
             .then(res => res.json())
-            .then(data => console.log(data));
+            .then(data => {
+                this.props.sentToPastOrders()
+            });
             
         };
+
+        
 
         return (
             <div>

@@ -12,7 +12,7 @@ import {Switch, Route, withRouter, Redirect} from 'react-router-dom'
 import PastOrders from './HomeComponents/PastOrders'
 import Profile from './HomeComponents/Profile';
 import MainContainer from './ItemComponents/MainContainer';
-// import Calendar from './Calendar';
+import Calendar from './HomeComponents/Calendar';
 // import './index.css'
 
 
@@ -53,6 +53,7 @@ class App extends React.Component {
   }
 
   handleLogOut = () => {
+    // localStorage.deleteMyBooking("token")
     this.setState({
       id: 0,
       username: "",
@@ -63,7 +64,9 @@ class App extends React.Component {
       },
       past_bookings: []
     })
-    localStorage.clear()
+    localStorage.clear();
+    // this.props.history("/");
+    alert("Log out successful!")
   }  
 
   handleLoginSubmit = (userInfo) => {
@@ -100,7 +103,7 @@ class App extends React.Component {
     })
     .then(res => res.json())
     .then(this.helpHandleResponse)
-    // this.props.history.push("/")
+    this.props.history.push("/")
   }
 
   helpHandleResponse = (resp) => {
@@ -255,7 +258,7 @@ class App extends React.Component {
         console.log(resp)
         let copyOfPastOrders = [...this.state.past_bookings, resp.transformed_cart]
         this.setState({
-          current_booking: resp.current_booking,
+          current_booking: resp.current_cart,
           past_bookings: copyOfPastOrders
         })
       })
@@ -278,10 +281,15 @@ class App extends React.Component {
   
 
   render() {
-    console.log("app.js", this.state)
+    const loggedIn = localStorage.token
+    console.log("app.js", loggedIn)
     return(
       <div className="App">
-        <NavBar/>
+        <NavBar
+        loggedIn={loggedIn}
+        handleLogOut={this.handleLogOut}
+        username={this.state.username}
+        />
         <Switch>
           <Route path="/" exact render={() => < HomeContainer
             categories={this.state.categories}
@@ -290,7 +298,7 @@ class App extends React.Component {
           <Route path='/about' component={About}/>
           <Route path='/login' render={this.renderForm}/>
           <Route path="/register" render={this.renderForm}/>
-          <Route path="/profile" render={this.renderProfile}/>
+          {/* <Route path="/profile" render={this.renderProfile}/> */}
           <Route path="/checkout">
             <Checkout
             currentCartIntoPastOrder={this.currentCartIntoPastOrder}
@@ -298,8 +306,9 @@ class App extends React.Component {
             // past_bookings={this.state.past_bookings}
             />
           </Route>
-          <Route path="/past-orders">
-            <PastOrders
+          <Route path="/profile">
+            <Profile
+            renderProfile={this.rednerProfile}
             past_bookings={this.state.past_bookings}
             />
           </Route>

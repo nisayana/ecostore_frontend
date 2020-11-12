@@ -1,7 +1,7 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-// import CurrentOrder from './CurrentOrder';
-// import PastOrders from './PastOrders';
+// import { useHistory } from 'react-router-dom';
+import Calendar from './Calendar';
+import PastOrders from './PastOrders';
 
 
 class Profile extends React.Component {
@@ -14,8 +14,10 @@ class Profile extends React.Component {
         console.log("profile", this.props)
         return(
             <div className="container">
+                {/* <h1>hello</h1> */}
                 {/* <CurrentOrder currentOrder={this.props.current_booking}/> */}
-                {/* <PastOrders/> */}
+                <PastOrders past_bookings={this.props.past_bookings} />
+                {/* <Calendar /> */}
             </div>
         )
     }

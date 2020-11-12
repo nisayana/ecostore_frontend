@@ -4,7 +4,8 @@ const About = () => {
     return(
         <div id="about-container">
             <h1 className="header">About</h1>
-            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&w=1000&q=80" alt="name" className="category-image" />
+            <img src="https://res.cloudinary.com/dv588hi0a/image/upload/v1605136031/samples/DSCF8417_sdqews.jpg" alt="name" className="category-image" />
+            {/* <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&w=1000&q=80" alt="name" className="category-image" /> */}
             <br></br>
             <p>
             I’ve been a yoga instructor for 8 years. I teach positive Hatha yoga with Elements of Prana yoga. Currently I am practicing and studying face yoga.

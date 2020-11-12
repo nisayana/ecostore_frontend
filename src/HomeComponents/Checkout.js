@@ -23,7 +23,7 @@ const arrOfComps = () => {
 }
   return (
     <div className="order">
-      <h2>Your Bookings</h2>
+      <h2>Cart</h2>
       <ul id="order-list">
         { totalSum === 0
         ?
@@ -33,9 +33,9 @@ const arrOfComps = () => {
         }
       </ul>
       <h3>Total Price: $<span id="total">{totalSum}</span></h3>
-      {/* <button onClick={handleClick} className="submit"> Pay 0 </button> */}
       <StripeComponent
-      // sentToPastOrders={handleClick}
+      price={totalSum}
+      sentToPastOrders={handleClick}
       />
     </div>
   )

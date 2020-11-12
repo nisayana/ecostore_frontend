@@ -1,6 +1,23 @@
-// import React from 'react';
-// import {useState} from 'react';
-// import {DatePicker} from 'react-datepicker'
+import React from 'react';
+import {useState} from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+
+ 
+function MyApp() {
+  const [value, onChange] = useState(new Date());
+  // console.log(this)
+  return (
+    <div>
+      <Calendar
+        onChange={onChange}
+        value={value}
+      />
+    </div>
+  );
+}
+
+export default Calendar;
 
 
 // const Calendar = () => {
