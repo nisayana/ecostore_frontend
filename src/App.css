@@ -119,7 +119,7 @@ button:hover {
   grid-template-rows: 50px 350px 50px;
   grid-template-areas:
     "h h h h h h h h h h h h"
-    "m m c c c c c c c o o o "
+    "c c c c c c c c c o o o "
 }
 
 .menu {

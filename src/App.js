@@ -13,6 +13,8 @@ import PastOrders from './HomeComponents/PastOrders'
 import Profile from './HomeComponents/Profile';
 import MainContainer from './ItemComponents/MainContainer';
 import Calendar from './HomeComponents/Calendar';
+import QuoteAndAuthor from './HomeComponents/QuoteAndAuthor';
+import quotes from './HomeComponents/Quotes';
 // import './index.css'
 
 
@@ -28,7 +30,9 @@ class App extends React.Component {
       id: 0,
       joiners: []
     },
-    past_bookings: []
+    past_bookings: [],
+    quote: quotes[0].quote,
+    author: quotes[0].author
   }
 
   componentDidMount() {
@@ -278,6 +282,27 @@ class App extends React.Component {
     }
   }
 
+  generateRandomQuote = (arr) => {
+    //get random numbers
+    let num = Math.floor(Math.random() * quotes.length)
+
+    let newQuote = quotes[num];
+
+    //update state
+    this.setState({
+      quote: newQuote.quote,
+      author: newQuote.author
+    })
+
+    this.shuffleQuotes(quotes)
+
+  }
+
+  //shuufle quotes function
+  shuffleQuotes = (arr) => {
+    return arr.sort(function () { return 0.5 - Math.random() });
+  }
+
   
 
   render() {
@@ -293,6 +318,9 @@ class App extends React.Component {
         <Switch>
           <Route path="/" exact render={() => < HomeContainer
             categories={this.state.categories}
+            generateRandomQuote={this.generateRandomQuote}
+            quote={this.state.quote}
+            author={this.state.author}
           />} />
           <Route path='/categories/:id' exact render={this.renderSpecificCategory} />
           <Route path='/about' component={About}/>

@@ -31,19 +31,25 @@ class StripeComponent extends React.Component {
             });
             
         };
-
         
-
-        return (
-            <div>
-                <StripeCheckout
+        const handleStripe = () => {
+            if (localStorage.token) {
+            return (
+            <StripeCheckout
                     token={ onToken }
                     stripeKey={ process.env.REACT_APP_STRIPE_API_KEY }
                     // provide input for billing address.
                     billingAddress
                 >
-                    {/* <button onClick={this.props.sentToPastOrders}> PAY </button> */}
-                </StripeCheckout>
+                </StripeCheckout>)
+            } else {
+                return "Please Log In or Sign Up"
+            }
+        }
+        
+        return (
+            <div>
+                {handleStripe()}
             </div>
         );
     }
