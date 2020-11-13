@@ -232,4 +232,20 @@ ul.nav li a:hover {
   color: #2585d4;
   cursor: pointer;
 }
+ 
+.grid-container {
+  grid-area: c;
+  margin: 2rem;
+}
 
+.grid-item {
+  text-align: center;
+  border: grey solid 1px;
+  padding: 1rem;
+  width: 10rem;
+  height: 8rem;
+  display: inline-grid;
+  margin: 1rem 1rem;
+  box-shadow: 3px 4px #e9dfe0
+
+}

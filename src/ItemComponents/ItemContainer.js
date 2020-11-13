@@ -15,7 +15,7 @@ class ItemContainer extends React.Component {
         })
         return (
             // <h1>hello</h1>
-            <div className="menu">
+            <div className="grid-container">
                 {arrayOfItems}
             </div>
             // <div className="container">
