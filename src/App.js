@@ -13,7 +13,6 @@ import PastOrders from './HomeComponents/PastOrders'
 import Profile from './HomeComponents/Profile';
 import MainContainer from './ItemComponents/MainContainer';
 import Calendar from './HomeComponents/Calendar';
-// import './index.css'
 
 
 
@@ -136,18 +135,6 @@ class App extends React.Component {
     }
   }
 
-  // helpHandleLoginResponse = (resp) => {
-  //   if(resp.error){
-  //     console.error(resp.error)
-  //   } else {
-  //     localStorage.token = resp.token
-  //     this.setState({
-  //       id: resp.user.id,
-  //       username: resp.user.username,
-  //       token: resp.token
-  //     })
-  //   }
-  // }
 
 
 
