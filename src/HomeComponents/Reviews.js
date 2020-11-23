@@ -10,12 +10,12 @@ class Reviews extends React.Component {
 
       return (
           <Container className="comment-container">
-              <Header className="review-container-header">Reviews for this destination:</Header>
+              <Header className="review-container-header">Reviews:</Header>
               {reviewCard}
-            <ReviewForm createComment={this.props.createComment} />
+            <ReviewForm createReview={this.props.createReview} />
           </Container>
       );
     }
   }
 
-export default CommentContainer;
+export default Reviews;

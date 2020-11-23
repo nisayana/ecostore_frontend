@@ -16,14 +16,13 @@ class ReviewCard extends Component {
 
   render() {
     console.log(this.props.review);
-    let {comment, rating, username} = this.props.review
+    let {review, username} = this.props.review
 
     return (
       <Container className="review-container">
           {this.showDeleteButton()}
           <p className="review-username">{username}</p>
           <div className="comment-rating-card">
-            <Rating className="rating-stars-card" defaultRating={rating} icon="star" maxRating={5} disabled />
             <p className="review-comment-card">{comment}</p>
           </div>
       </Container>

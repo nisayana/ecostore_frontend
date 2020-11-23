@@ -6,7 +6,7 @@ import { Form, Icon } from 'semantic-ui-react';
 class CommentForm extends Component {
 
     state={
-      comment: ""
+      review: ""
     }
   
     handleChange = (event) => {
@@ -14,13 +14,6 @@ class CommentForm extends Component {
       this.setState({
           [name]: value,
       })
-  }
-  
-  handleRate=(evt)=>{
-    let rating = parseInt(evt.target.getAttribute("aria-posinset"))
-    this.setState({
-      rating
-    })
   }
   
   
