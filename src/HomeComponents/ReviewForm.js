@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
-import { Form, Icon } from 'semantic-ui-react';
+import TextareaAutosize from 'react-textarea-autosize';
+import { Form, Button } from 'semantic-ui-react';
 
 
-class CommentForm extends Component {
+class ReviewForm extends Component {
 
     state={
       review: ""
@@ -19,9 +20,9 @@ class CommentForm extends Component {
   
     handleSubmit=(evt)=>{
       evt.preventDefault()
-      this.props.createComment(this.state)
+      this.props.createReview(this.state)
       this.setState({
-        comment: ""
+        review: ""
       })
     }
   
@@ -33,8 +34,8 @@ class CommentForm extends Component {
             className="comment-form-input"
             label='Leave a review here:'
             placeholder="Write your thoughts"
-            name="comment"
-            value={this.state.comment}
+            name="review"
+            value={this.state.review}
             onChange={this.handleChange}
           />
           <br/>

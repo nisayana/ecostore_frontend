@@ -23,7 +23,7 @@ body {
   border: grey solid 1px;
   padding: 1rem;
   width: 20rem;
-  height: 25rem;
+  height: 30rem;
   display: inline-grid;
   margin: 1rem 2rem;
   box-shadow: 3px 4px #e9dfe0
@@ -119,8 +119,8 @@ button:hover {
   text-align: center;
   border: grey solid 1px;
   padding: 1rem;
-  width: 10rem;
-  height: 8rem;
+  width: 12rem;
+  height: 10rem;
   display: inline-grid;
   margin: 1rem 1rem;
   box-shadow: 3px 4px #e9dfe0

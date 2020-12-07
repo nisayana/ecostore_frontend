@@ -52,7 +52,7 @@ class CategoryContainer extends React.Component {
     render () {
         // console.log("from Container", this)
         let categoryCard = this.props.categories.map((categoryObj) => {
-            return <CategoryCard categoryCard={categoryObj} key={categoryObj.id}/>
+            return <CategoryCard categoryCard={categoryObj} key={categoryObj.id} createReview={this.createReview} deleteReview={this.deleteReview}/>
         })
         return (
             <div>

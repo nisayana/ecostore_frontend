@@ -23,7 +23,7 @@ class ReviewCard extends Component {
           {this.showDeleteButton()}
           <p className="review-username">{username}</p>
           <div className="comment-rating-card">
-            <p className="review-comment-card">{comment}</p>
+            <p className="review-comment-card">{review}</p>
           </div>
       </Container>
     );
