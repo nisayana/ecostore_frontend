@@ -12,7 +12,6 @@ import {Switch, Route, withRouter, Redirect} from 'react-router-dom'
 import PastOrders from './HomeComponents/PastOrders'
 import Profile from './HomeComponents/Profile';
 import MainContainer from './ItemComponents/MainContainer';
-import Calendar from './HomeComponents/Calendar';
 
 
 

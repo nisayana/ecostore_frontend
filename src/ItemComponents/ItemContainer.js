@@ -15,7 +15,7 @@ class ItemContainer extends React.Component {
         })
         return (
             // <h1>hello</h1>
-            <div className="grid-container">
+            <div className="item-container">
                 {arrayOfItems}
             </div>
             // <div className="container">

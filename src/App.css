@@ -59,13 +59,13 @@ button:hover {
   color: #bedaf5;
 }
 
-.container {
+/* .container {
   padding: 1rem;
   width: stretch;
   height: auto;
   /* background: #515DA2; */
-  opacity: .8;
-}
+  /* opacity: .8;
+} */ */
 
 .submit {
   position: relative;
@@ -95,7 +95,7 @@ button:hover {
   padding: 0;
 }
 
-.container {
+/* .container {
   display: grid;
   grid-gap: 5px;
   grid-template-columns: repeat(12, 1fr);
@@ -103,26 +103,34 @@ button:hover {
   grid-template-areas:
     "h h h h h h h h h h h h"
     "c c c c c c c c c o o o "
-}
+} */
 
-.menu {
+/* .menu {
   grid-area: c;
-}
+} */
 
  
-.grid-container {
-  grid-area: c;
-  margin: 2rem;
+.item-container {
+  width: 100%;
+  column-count: 4;
 }
 
-.grid-item {
-  text-align: center;
+.item-card {
+  height: 400px;
+  width: 100%;
+  /* text-align: center;
   border: grey solid 1px;
   padding: 1rem;
   width: 12rem;
   height: 10rem;
   display: inline-grid;
   margin: 1rem 1rem;
-  box-shadow: 3px 4px #e9dfe0
+  box-shadow: 3px 4px #e9dfe0 */
 
+}
+
+.item-image {
+  width: 65%;
+  height: 250px;
+  border-radius: 20px;
 }

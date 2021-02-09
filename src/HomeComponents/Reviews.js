@@ -7,7 +7,7 @@ class Reviews extends React.Component {
 
   render() {
     let reviewCard = this.props.category.reviews ?  this.props.caregory.reviews.map(review => <ReviewCard key={review.id} review={review} user={this.props.user} deleteReview={this.props.deleteReview} routerProps={this.props.routerProps} /> ) : null
-
+    console.log("from Reviews", this)
       return (
           <Container className="comment-container">
               <Header className="review-container-header">Reviews:</Header>

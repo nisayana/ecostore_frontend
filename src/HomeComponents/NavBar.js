@@ -42,7 +42,7 @@ const NavBar = ({ loggedIn, handleLogOut, username }) => {
         {/* If the user IS LOGGED IN, display "Logged In As" and the Log Out button; if they are NOT LOGGED IN, display the Sign Up button */}
         {loggedIn ? (
           <div  id="logged-in-as">
-            <div style={{ marginRight: "4px" }}>Logged In As</div>
+            <div style={{ marginRight: "4px" }}>Logged in as</div>
             <Link to={"/profile"}>{username}</Link>
           </div>
         ) : null}

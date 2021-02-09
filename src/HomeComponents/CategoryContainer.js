@@ -35,7 +35,7 @@ class CategoryContainer extends React.Component {
     }
 
     deleteReview = (review_id) => {
-        fetch(`http://localhost:3000/reviewa/${review_id}`, {
+        fetch(`http://localhost:3000/reviews/${review_id}`, {
             method: "DELETE"
         })
         .then(res => res.json())
@@ -50,7 +50,7 @@ class CategoryContainer extends React.Component {
 
 
     render () {
-        // console.log("from Container", this)
+        console.log("from Container", this.props)
         let categoryCard = this.props.categories.map((categoryObj) => {
             return <CategoryCard categoryCard={categoryObj} key={categoryObj.id} createReview={this.createReview} deleteReview={this.deleteReview}/>
         })

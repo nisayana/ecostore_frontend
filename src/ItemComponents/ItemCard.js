@@ -8,14 +8,15 @@ class ItemCard extends React.Component {
 
     render() {
 
-        let {name, price} = this.props.item
-        // console.log(this.props)
+        let {name, image, overview, price} = this.props.item
+        console.log(this.props)
         return(
-            <div className="grid-item">
-                <h1>{name}</h1>
-                {/* <img src={image} alt={name} className="item-image" /> */}
+            <div className="item-card">
+                {/* <h1>{name}</h1> */}
+                <img src={image} alt={name} className="item-image" />
                 <h2>{price}$</h2>
-                <button className="button" onClick={this.handleClick}>Book</button>
+                <h2>{overview}</h2>
+                <button className="button" onClick={this.handleClick}>Add to cart</button>
             </div>
         )
     }
