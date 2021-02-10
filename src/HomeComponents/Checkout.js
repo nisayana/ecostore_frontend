@@ -17,6 +17,7 @@ const handleClick = (e) => {
   
 
 const arrOfComps = () => {
+  console.log("from Checkout", props)
   if (props.current_booking.joiners){
     return props.current_booking.joiners.map(joiner => <p key={joiner.id}>{joiner.item_name}</p>)
   }

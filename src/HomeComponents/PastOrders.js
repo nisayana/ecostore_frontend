@@ -11,7 +11,7 @@ class PastOrder extends React.Component{
   
     return (
       <div className="custom">
-        <h1>Bookings:</h1>
+        <h1>Orders:</h1>
   
         <div id="ordersDiv">
           {arrayOfComps}

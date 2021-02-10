@@ -13,9 +13,9 @@ body {
 }
 
 #categories-collection {
-  margin: 2rem;
-  display: grid;
-  justify-content: space-evenly;
+  width: 100%;
+  column-count: 2;
+  /* justify-content: space-evenly; */
 }
 
 .category-card {
@@ -41,7 +41,6 @@ button {
   background-color: #131518;
   border: none;
   border-radius: 5px;
-  height: 1rem;
   width: max-content;
   color: whitesmoke;
   font-size: 12px;
@@ -59,13 +58,13 @@ button:hover {
   color: #bedaf5;
 }
 
-/* .container {
+.container {
   padding: 1rem;
   width: stretch;
   height: auto;
   /* background: #515DA2; */
-  /* opacity: .8;
-} */ */
+  opacity: .8;
+}
 
 .submit {
   position: relative;
@@ -112,12 +111,20 @@ button:hover {
  
 .item-container {
   width: 100%;
-  column-count: 4;
+  column-count: 3;
 }
 
 .item-card {
-  height: 400px;
-  width: 100%;
+  text-align: center;
+  /* border: grey solid 1px; */
+  padding: 1rem;
+  width: 20rem;
+  height: 25rem;
+  display: inline-grid;
+  margin: 1rem 2rem;
+  /* box-shadow: 3px 4px #e9dfe0 */
+  /* height: 800px;
+  width: 100%; */
   /* text-align: center;
   border: grey solid 1px;
   padding: 1rem;
@@ -130,7 +137,8 @@ button:hover {
 }
 
 .item-image {
-  width: 65%;
-  height: 250px;
+  width: 85%;
+  height: 200px;
   border-radius: 20px;
 }
+

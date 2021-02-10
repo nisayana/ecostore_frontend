@@ -24,7 +24,7 @@ const CurrentOrder = (props) => {
 
   return (
     <div className="order">
-      <h2>Your Bookings</h2>
+      <h2>Your orders:</h2>
       <ul id="order-list">
         {arrOfComps}
       </ul>

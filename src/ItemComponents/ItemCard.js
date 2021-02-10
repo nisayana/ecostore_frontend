@@ -12,10 +12,10 @@ class ItemCard extends React.Component {
         console.log(this.props)
         return(
             <div className="item-card">
-                {/* <h1>{name}</h1> */}
                 <img src={image} alt={name} className="item-image" />
-                <h2>{price}$</h2>
-                <h2>{overview}</h2>
+                <p>{name}</p>
+                <p>{price}$</p>
+                {/* <p>{overview}</p> */}
                 <button className="button" onClick={this.handleClick}>Add to cart</button>
             </div>
         )
