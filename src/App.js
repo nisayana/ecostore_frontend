@@ -12,6 +12,7 @@ import {Switch, Route, withRouter, Redirect} from 'react-router-dom'
 import PastOrders from './HomeComponents/PastOrders'
 import Profile from './HomeComponents/Profile';
 import MainContainer from './ItemComponents/MainContainer';
+import { Search } from 'semantic-ui-react';
 
 
 
@@ -20,21 +21,35 @@ class App extends React.Component {
   state = {
     // id: 0,
     categories: [],
+    items: [],
     token: "",
     username: "",
     current_booking: {
       id: 0,
       joiners: []
     },
-    past_bookings: []
+    past_bookings: [],
+    searchTerm: ""
+  }
+
+  changeSearchTerm = (termFromChild) => {
+    this.setState({
+      searchTerm: termFromChild
+    })
   }
 
   componentDidMount() {
     fetch('http://localhost:3000/categories')
     .then(res => res.json())
     .then((arrayOfCategories) => {
+      let arrayOfItems = []
+      arrayOfCategories.map(singleCategory => {
+        arrayOfItems = [...singleCategory.items, ...arrayOfItems]
+      })
+      console.log(arrayOfItems)
       this.setState({
-        categories: arrayOfCategories
+        categories: arrayOfCategories,
+        items: arrayOfItems
       })
     })
 
@@ -135,8 +150,6 @@ class App extends React.Component {
   }
 
 
-
-
   renderForm = (routerProps) => {
     if(this.state.token){
       return <button className='logout' onClick={this.handleLogOut}>Log out</button>
@@ -164,7 +177,7 @@ class App extends React.Component {
       return categoryPojo.id === parseInt(givenId)
     })
     if (selectedCategory) {
-        console.log(this)
+        // console.log(this)
         return <MainContainer 
         category = {selectedCategory} 
         token = {this.state.token}
@@ -172,13 +185,13 @@ class App extends React.Component {
         current_booking = {this.state.current_booking}
         addToMyBookings = {this.addToMyBookings}
         deleteMyBooking = {this.deleteMyBooking}
+        increaseItem = {this.increaseItem}
+        decreaseItem = {this.decreaseItem}
         />
     } else {
         return <NotFound />
     }
   }
-
-
 
   addToMyBookings = (item_id) => {
     fetch("http://localhost:3000/joiners", {
@@ -188,7 +201,8 @@ class App extends React.Component {
       },
       body: JSON.stringify({
         item_id: item_id,
-        order_id: this.state.current_booking.id
+        order_id: this.state.current_booking.id,
+        quantity: 1
       })
     })
     .then(res => res.json())
@@ -204,6 +218,24 @@ class App extends React.Component {
         current_booking: copyOfCart
       })
     })
+  }
+
+  increaseItem = (increasedItem) => {
+    let increasedJoinerItem = this.state.current_booking.joiners.map(joiner => {
+      if (increasedItem.id === joiner.id) {
+        joiner.quantity++
+      }
+      return joiner
+    })
+
+    // this.setState()
+  }
+
+  decreaseItem = (decreasedItem) => {
+    let decreasedJoinerItem = this.state.current_booking.joiners.map(item => {
+
+    })
+    this.setState()
   }
 
 
@@ -264,11 +296,18 @@ class App extends React.Component {
     }
   }
 
-  
-
   render() {
     const loggedIn = localStorage.token
     console.log("app.js", loggedIn)
+    let {categories, searchTerm} = this.state
+
+    let filteredArray = categories.filter((category) => {
+      console.log(category)
+
+      return category.name.toLowerCase().includes(searchTerm.toLowerCase())
+    })
+
+
     return(
       <div className="App">
         <NavBar
@@ -276,15 +315,19 @@ class App extends React.Component {
         handleLogOut={this.handleLogOut}
         username={this.state.username}
         />
+        <Search
+        searchTerm={this.state.searchTerm}
+        changeSearchTerm={this.changeSearchTerm}
+        />
         <Switch>
           <Route path="/" exact render={() => < HomeContainer
-            categories={this.state.categories}
+          // items={this.state.items}
+          categories={this.state.categories}
           />} />
           <Route path='/categories/:id' exact render={this.renderSpecificCategory} />
           <Route path='/about' component={About}/>
           <Route path='/login' render={this.renderForm}/>
           <Route path="/register" render={this.renderForm}/>
-          {/* <Route path="/profile" render={this.renderProfile}/> */}
           <Route path="/checkout">
             <Checkout
             currentCartIntoPastOrder={this.currentCartIntoPastOrder}
@@ -298,7 +341,6 @@ class App extends React.Component {
             past_bookings={this.state.past_bookings}
             />
           </Route>
-          {/* <Route path='/calendar' component={Calendar}/> */}
         </Switch>
       </div>
     )

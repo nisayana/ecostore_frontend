@@ -12,7 +12,7 @@ class ItemCard extends React.Component {
         console.log(this.props)
         return(
             <div className="item-card">
-                <img src={image} alt={name} className="item-image" />
+                <img src={image} alt={image} className="item-image"/>
                 <p>{name}</p>
                 <p>{price}$</p>
                 {/* <p>{overview}</p> */}

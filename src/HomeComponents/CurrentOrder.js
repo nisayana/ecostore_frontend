@@ -2,22 +2,38 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 const CurrentOrder = (props) => {
-//   let totalSum = props.current_cart.burger_orders.reduce((agg, b_order) => {
-//     return agg + b_order.burger_price
-//   }, 0)
 
   const history = useHistory();
+  
   const handleCheckout = () => {
     history.push("/checkout")
   }
 
   const deleteItem = (joiner) => {
-    // console.log("hello", joiner)
+    console.log("hello", joiner)
     props.deleteMyBooking(joiner)
   }
 
+  const handleIncreaseItem = (joiner) => {
+    // fetch(`http://localhost:3000/joiners/${props.current_booking.}`)
+    console.log("increase", joiner)
+    console.log(props.current_booking)
+    props.increaseItem(joiner)
+  }
+
+  const decreaseItem = (joiner) => {
+    console.log(joiner)
+  }
+
   let arrOfComps = props.current_booking.joiners.map(joiner => {
-    return <div><h2 key={joiner.id}>{joiner.item_name}</h2>
+    console.log(joiner)
+    return <div><p key={joiner.id}>{joiner.item_name}</p>
+    <p key={joiner.id}>{joiner.item_price} $</p>
+    <p> Quantity: {joiner.quantity} </p>
+    <button onClick={() => handleIncreaseItem(joiner)}>+</button>
+    {/* <button onClick={props.handleIncreaseItem}>+</button> */}
+    <button onClick={() => decreaseItem(joiner)}>-</button>
+    <br/>
     <button onClick={() => deleteItem(joiner)}>delete</button>
     </div>
   })

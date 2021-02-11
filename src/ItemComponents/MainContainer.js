@@ -18,6 +18,8 @@ function MainContainer(props){
             />
             <CurrentOrder 
             current_booking={props.current_booking}
+            increaseItem={props.increaseItem}
+            decreaseItem={props.decreaseItem}
             deleteMyBooking={props.deleteMyBooking}
             />
         </div>
