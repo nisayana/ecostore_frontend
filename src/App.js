@@ -1,18 +1,23 @@
 import React from 'react';
-import HomeContainer from './HomeComponents/HomeContainer';
-import './App.css';
 import NotFound from './NotFound';
-import NavBar from './HomeComponents/NavBar';
-import ItemContainer from './ItemComponents/ItemContainer';
-import LoginForm from './HomeComponents/LoginForm'
-import RegisterForm from './HomeComponents/RegisterForm'
+
 import About from './HomeComponents/About'
 import Checkout from './HomeComponents/Checkout'
-import {Switch, Route, withRouter, Redirect} from 'react-router-dom'
+import HomeContainer from './HomeComponents/HomeContainer';
+import LoginForm from './HomeComponents/LoginForm'
+import NavBar from './HomeComponents/NavBar';
 import PastOrders from './HomeComponents/PastOrders'
 import Profile from './HomeComponents/Profile';
+import RegisterForm from './HomeComponents/RegisterForm'
+import Search from './HomeComponents/Search'
+
+import ItemContainer from './ItemComponents/ItemContainer';
 import MainContainer from './ItemComponents/MainContainer';
-import { Search } from 'semantic-ui-react';
+
+import {Switch, Route, withRouter, Redirect} from 'react-router-dom'
+import './App.css';
+
+// import { Search } from 'semantic-ui-react';
 
 
 
@@ -36,6 +41,7 @@ class App extends React.Component {
     this.setState({
       searchTerm: termFromChild
     })
+    // console.log("updating search")
   }
 
   componentDidMount() {
@@ -176,6 +182,7 @@ class App extends React.Component {
       // console.log("categoryPojo", categoryPojo)
       return categoryPojo.id === parseInt(givenId)
     })
+    // console.log(selectedCategory)
     if (selectedCategory) {
         // console.log(this)
         return <MainContainer 
@@ -299,13 +306,14 @@ class App extends React.Component {
   render() {
     const loggedIn = localStorage.token
     console.log("app.js", loggedIn)
-    let {categories, searchTerm} = this.state
+    let {items, searchTerm} = this.state
 
-    let filteredArray = categories.filter((category) => {
-      console.log(category)
+    let filteredArray = items.filter((item) => {
+      // console.log(category)
 
-      return category.name.toLowerCase().includes(searchTerm.toLowerCase())
+      return item.name.toLowerCase().includes(searchTerm.toLowerCase())
     })
+    console.log(filteredArray)
 
 
     return(
@@ -321,8 +329,10 @@ class App extends React.Component {
         />
         <Switch>
           <Route path="/" exact render={() => < HomeContainer
-          // items={this.state.items}
-          categories={this.state.categories}
+          items={this.state.items}
+          addToMyBookings = {this.addToMyBookings}
+          
+          items={filteredArray}
           />} />
           <Route path='/categories/:id' exact render={this.renderSpecificCategory} />
           <Route path='/about' component={About}/>

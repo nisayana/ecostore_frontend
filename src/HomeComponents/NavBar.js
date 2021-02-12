@@ -21,6 +21,17 @@ const NavBar = ({ loggedIn, handleLogOut, username }) => {
           </div>
         </li>
 
+        <li>
+          <div >
+            <Link to={"/categories/:id"}>Home&Kitchen</Link>
+          </div>
+        </li>
+
+        <li>
+          <div >
+            <Link to={"/categories"}>Bath&Beauty</Link>
+          </div>
+        </li>
 
         <li>
           <div >

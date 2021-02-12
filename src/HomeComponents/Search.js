@@ -7,10 +7,11 @@ function Search(props) {
     }
 
     return(
-        <div>
+        <div id="search">
             <input type="text"
                 name="search"
                 className="search"
+                placeholder="Search"
                 value={props.searchTerm}
                 onChange={handleInput}
             />

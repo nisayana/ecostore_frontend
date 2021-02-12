@@ -4,6 +4,7 @@ body {
 }
 
 #header-home {
+  margin-top: 1em;
   display: flex;
   justify-content: center;
   background: #ffffff;
@@ -142,3 +143,13 @@ button:hover {
   border-radius: 20px;
 }
 
+#search input[type=text] {
+  padding: 8px;
+  margin-bottom: 3em;
+  font-size: 15px;
+  border: 1px solid grey;
+  float: left;
+  width: 20%;
+  background: #f1f1f1;
+  /* border-radius: 20px; */
+}
