@@ -1,10 +1,10 @@
 import React from 'react';
 // import ItemCard from '../ItemCard';
-// import CurrentOrder from '../HomeComponents/CurrentOrder';
+import CurrentOrder from '../HomeComponents/CurrentOrder';
 import ItemContainer from './ItemContainer';
 
 function MainContainer(props){
-    console.log("from main", props)
+    // console.log("from main", props)
     return(
         <div className="container">
             
@@ -17,12 +17,6 @@ function MainContainer(props){
             addToMyBookings = {props.addToMyBookings}
 
             />
-            {/* <CurrentOrder 
-            current_booking={props.current_booking}
-            increaseItem={props.increaseItem}
-            decreaseItem={props.decreaseItem}
-            deleteMyBooking={props.deleteMyBooking}
-            /> */}
         </div>
     )
 }

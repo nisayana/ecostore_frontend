@@ -15,9 +15,8 @@ const CurrentOrder = (props) => {
   }
 
   const handleIncreaseItem = (joiner) => {
-    // fetch(`http://localhost:3000/joiners/${props.current_booking.}`)
-    console.log("increase", joiner)
-    console.log(props.current_booking)
+    // console.log("increase", joiner)
+    // console.log(props.current_booking)
     props.increaseItem(joiner)
   }
 
@@ -51,4 +50,4 @@ const CurrentOrder = (props) => {
   )
 }
 
-// export default CurrentOrder;
+export default CurrentOrder;

@@ -15,7 +15,7 @@ class SinglePastOrder extends React.Component{
     }
 
     render() {
-        console.log(this.props)
+        // console.log(this.props)
         let allPastOrders = this.props.past_booking.joiners.map(past_booking => {
         return <li>{past_booking.item_name}</li>
         })

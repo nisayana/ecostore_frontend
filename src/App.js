@@ -14,7 +14,7 @@ import Search from './HomeComponents/Search'
 import ItemContainer from './ItemComponents/ItemContainer';
 import MainContainer from './ItemComponents/MainContainer';
 
-import {Switch, Route, withRouter, Redirect} from 'react-router-dom'
+import {Switch, Route, withRouter, Redirect, NavLink} from 'react-router-dom'
 import './App.css';
 
 // import { Search } from 'semantic-ui-react';
@@ -175,7 +175,7 @@ class App extends React.Component {
   }
 
   renderSpecificCategory = (routerProps) => {
-    // console.log("router props", routerProps)
+    console.log("router props", routerProps)
     let givenId = routerProps.match.params.id 
     // console.log("givenId", givenId)
     let selectedCategory = this.state.categories.find((categoryPojo) => {
@@ -184,8 +184,13 @@ class App extends React.Component {
     })
     // console.log(selectedCategory)
     if (selectedCategory) {
+        let filteredArray = selectedCategory.items.filter((item) => {
+          // console.log(category)
+          return item.name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+        })
         // console.log(this)
-        return <MainContainer 
+        return <MainContainer
+        items={filteredArray} 
         category = {selectedCategory} 
         token = {this.state.token}
         past_bookings = {this.state.past_bookings}
@@ -234,8 +239,24 @@ class App extends React.Component {
       }
       return joiner
     })
+    console.log("hello")
+    fetch(`http://localhost:3000/joiners/${increasedItem.id}`, {
+      
+      method: "PATCH",
+      headers: {
+        "Content-Type": "Application/json"
+      },
+      body: JSON.stringify({
+        quantity: increasedItem.quantity
+      })
+    })
+    .then(res => res.json())
+    .then((updatedSingleItem) => {
+      this.setState({
+        joiners: increasedJoinerItem,
+      })
+    })
 
-    // this.setState()
   }
 
   decreaseItem = (decreasedItem) => {
@@ -250,11 +271,10 @@ class App extends React.Component {
     // console.log(joiner)
     fetch(`http://localhost:3000/joiners/${joiner.id}`, {
       method: "DELETE"
-
     })
     .then(res => res.json())
     .then(deletedItem => {
-      console.log(deletedItem)
+      // console.log(deletedItem)
       let updatedJoinerCart = this.state.current_booking.joiners.filter(item => {
         return item.id !== deletedItem.joiner.id
       })
@@ -268,8 +288,6 @@ class App extends React.Component {
       })
     })
   }
-
-
 
   currentCartIntoPastOrder = () => {
     fetch(`http://localhost:3000/orders/${this.state.current_booking.id}/transform`, {
@@ -304,16 +322,26 @@ class App extends React.Component {
   }
 
   render() {
+
+    let arrayOfCategories = this.state.categories.map ((categoryPOJO)=>{
+      return (
+        <NavLink>
+        key={categoryPOJO.id}
+        to={`/categories/${categoryPOJO.id}`}>{categoryPOJO.name}
+        </NavLink>
+      )
+    })
+    console.log(arrayOfCategories)
+
     const loggedIn = localStorage.token
-    console.log("app.js", loggedIn)
+    // console.log("app.js", loggedIn)
     let {items, searchTerm} = this.state
 
     let filteredArray = items.filter((item) => {
       // console.log(category)
-
       return item.name.toLowerCase().includes(searchTerm.toLowerCase())
     })
-    console.log(filteredArray)
+    // console.log(filteredArray)
 
 
     return(
@@ -322,6 +350,7 @@ class App extends React.Component {
         loggedIn={loggedIn}
         handleLogOut={this.handleLogOut}
         username={this.state.username}
+        arrayOfCategories={this.state.categories}
         />
         <Search
         searchTerm={this.state.searchTerm}
@@ -329,10 +358,14 @@ class App extends React.Component {
         />
         <Switch>
           <Route path="/" exact render={() => < HomeContainer
-          items={this.state.items}
-          addToMyBookings = {this.addToMyBookings}
-          
           items={filteredArray}
+          token = {this.state.token}
+          past_bookings = {this.state.past_bookings}
+          current_booking = {this.state.current_booking}
+          addToMyBookings = {this.addToMyBookings}
+          deleteMyBooking = {this.deleteMyBooking}
+          increaseItem = {this.increaseItem}
+          decreaseItem = {this.decreaseItem}
           />} />
           <Route path='/categories/:id' exact render={this.renderSpecificCategory} />
           <Route path='/about' component={About}/>
@@ -342,6 +375,9 @@ class App extends React.Component {
             <Checkout
             currentCartIntoPastOrder={this.currentCartIntoPastOrder}
             current_booking={this.state.current_booking}
+            increaseItem={this.increaseItem}
+            decreaseItem={this.decreaseItem}
+            deleteMyBooking={this.deleteMyBooking}
             // past_bookings={this.state.past_bookings}
             />
           </Route>

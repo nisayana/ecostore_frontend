@@ -1,9 +1,23 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 
-const NavBar = ({ loggedIn, handleLogOut, username }) => {
+const NavBar = ({ loggedIn, handleLogOut, username, arrayOfCategories }) => {
+  // console.log(arrayOfCategories)
+
+  let renderCategory = () => {
+    console.log(arrayOfCategories)
+    return arrayOfCategories.map((singleCategory) => {
+      return (<li><Link to={`/categories/${singleCategory.id}`}>{singleCategory.name}</Link></li>)
+    })
+  }
+
+
+
   return(
     <ul className="nav">
+        {/* <li>
+          {arrayOfCategories}
+        </li> */}
         <li>
           <Link to={"/"}>Home
             {/* <div >
@@ -21,17 +35,7 @@ const NavBar = ({ loggedIn, handleLogOut, username }) => {
           </div>
         </li>
 
-        <li>
-          <div >
-            <Link to={"/categories/:id"}>Home&Kitchen</Link>
-          </div>
-        </li>
-
-        <li>
-          <div >
-            <Link to={"/categories"}>Bath&Beauty</Link>
-          </div>
-        </li>
+        {renderCategory()}
 
         <li>
           <div >

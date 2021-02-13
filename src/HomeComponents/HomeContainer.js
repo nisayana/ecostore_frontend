@@ -6,7 +6,7 @@ import CategoryContainer from './CategoryContainer'
 class HomeContainer extends React.Component {
 
   render() {
-    console.log("from Home cont", this.props)
+    // console.log("from Home cont", this.props)
     return(
       <div>
         <h1 id="header-home">Eco store</h1>
@@ -17,7 +17,13 @@ class HomeContainer extends React.Component {
         {/* <CategoryContainer categories={this.props.categories} /> */}
         <MainContainer 
         items={this.props.items} 
+        token = {this.props.token}
+        past_bookings = {this.props.past_bookings}
+        current_booking = {this.props.current_booking}
         addToMyBookings = {this.props.addToMyBookings}
+        deleteMyBooking = {this.props.deleteMyBooking}
+        increaseItem = {this.props.increaseItem}
+        decreaseItem = {this.props.decreaseItem}
         />
       </div>
     )
