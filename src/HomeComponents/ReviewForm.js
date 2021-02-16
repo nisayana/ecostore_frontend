@@ -9,7 +9,8 @@ class ReviewForm extends React.Component {
     }
 
     handleReviewForm = (evt) => {
-        console.log("handle review form")
+        evt.preventDefault()
+        console.log("handle review form", this.props)
         if (this.props.token) {
             fetch(`http://localhost:3000/reviews`, {
                 method: "POST",
@@ -18,7 +19,7 @@ class ReviewForm extends React.Component {
                     'authorization': this.props.token
                 },
                 body: JSON.stringify({
-                    item_id: this.props.item_id,
+                    item_id: this.props.item.id,
                     content: this.state.content
                 })
             })

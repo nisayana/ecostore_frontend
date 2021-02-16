@@ -55,7 +55,7 @@ class ItemFullCard extends React.Component {
 
     render() {
         
-        console.log("from full card", this)
+        console.log("from full card", this.props)
 
         let reviews = this.state.reviews.map(reviewPojo => {
             return <ReviewsOnItem
@@ -71,7 +71,7 @@ class ItemFullCard extends React.Component {
         let {name, image, overview, price, id} = this.props.selectedItem
 
         return(
-            <div className="item-card">
+            <div className="item-fullcard">
                 <Link to={`/items/${id}`}>
                     <img src={image} alt={this.props.selectedItem.name} className="item-image" />
                     <h3>{name}</h3>
@@ -80,11 +80,11 @@ class ItemFullCard extends React.Component {
                     <p>{overview}</p>
                     <div className='allReviews'>{reviews}</div>
                 </Link>
-                <ReviewForm className="review-container">
-                    item = {this.props.item}
-                    token = {this.props.token} 
-                    addReviewToState = {this.addReviewToState}/>
-                </ReviewForm>
+                <ReviewForm id="review-container"
+                    item={this.props.selectedItem}
+                    token={this.props.token} 
+                    addReviewToState={this.addReviewToState}
+                />
             </div>
         )
     }

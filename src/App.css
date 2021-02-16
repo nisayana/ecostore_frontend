@@ -9,8 +9,12 @@ body {
   justify-content: center;
   background: #ffffff;
   opacity: .8;
-  height: 2rem;
+  height: 5rem;
   padding: 1rem;
+}
+
+h1#header-home {
+  font-size: 40px;
 }
 
 #categories-collection {
@@ -148,15 +152,20 @@ button:hover {
   margin-bottom: 3em;
   font-size: 15px;
   border: 1px solid grey;
-  float: left;
+  float: center;
   width: 20%;
   background: #f1f1f1;
   /* border-radius: 20px; */
 }
 
-/* .item {
-  display: grid;
-  grid-gap: 5px;
-  /* grid-template-columns: repeat(12, 1fr); */
-  /* grid-template-rows: 50px 350px;
-} */ 
+.item-fullcard {
+  width: 80%;
+  column-count: 2;
+  justify-content: center;
+
+}
+
+#review-container {
+  width: 100%;
+  column-count: 1;
+}

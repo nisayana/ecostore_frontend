@@ -11,8 +11,6 @@ const NavBar = ({ loggedIn, handleLogOut, username, arrayOfCategories }) => {
     })
   }
 
-
-
   return(
     <ul className="nav">
         {/* <li>

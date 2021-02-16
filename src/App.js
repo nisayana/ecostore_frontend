@@ -234,6 +234,8 @@ class App extends React.Component {
   }
 
   addToMyBookings = (item_id) => {
+    // check to see this.state.current_booking.joiners has an item with the same item_id as parameter 236
+    // if the joiners array has an item with the same item_id as a parameter, run increase method function
     fetch("http://localhost:3000/joiners", {
       method: "POST",
       headers: {
@@ -328,7 +330,7 @@ class App extends React.Component {
         ...this.state.current_booking,
         joiners: updatedJoinerCart
       }  
-      // console.log(updatedJoinerCart)
+      console.log(updatedJoinerCart)
       this.setState({
         current_booking: copyOfCart
       })

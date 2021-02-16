@@ -4,21 +4,13 @@ const About = () => {
     return(
         <div id="about-container">
             <h1 className="header">About</h1>
-            <img src="https://res.cloudinary.com/dv588hi0a/image/upload/v1605136031/samples/DSCF8417_sdqews.jpg" alt="name" className="category-image" />
+            <img src="https://www.dcpweb.co.uk/userfiles/gallery/file/portfolio_logo_eco_planet_3x2.jpg" alt="name" className="category-image" />
             {/* <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&w=1000&q=80" alt="name" className="category-image" /> */}
             <br></br>
-            <p>
-            I’ve been a yoga instructor for 8 years. I teach positive Hatha yoga with Elements of Prana yoga. Currently I am practicing and studying face yoga.
-            I am Master of Sports in gymnastics. I started practicing yoga after serious sports trauma. In the past few years, I have attended many yoga classes and seminars in USA and India. So, I enjoy sharing my acquired knowledge and experience with people during individual and group classes. Also I teach yoga for children three years and older in a local fitness club.
-            Follow me on the Instagram @yoga_rossman. If you have any questions, please contact me rossman@yoga.com. 
-            Come experience the boost of positive energy in my classes that take place in Central Park
-            </p>
-            <br></br>
-            <p>
-            Most forms of yoga in the West can be classified as Hatha Yoga. Hatha simply refers to the practice of physical yoga postures, meaning your Ashtanga, vinyasa, Iyengar and Power Yoga classes are all Hatha Yoga. The word “hatha” can be translated two ways: as “willful” or “forceful,” or the yoga of activity, and as “sun” (ha) and “moon” (tha), the yoga of balance. Hatha practices are designed to align and calm your body, mind, and spirit in preparation for meditation.
-            </p>
-
-
+            <h4>We don’t need a handful of people doing zero waste perfectly. We need millions of people doing it imperfectly. – Anne Marie Bonneau aka The Zero Waste Chef</h4>
+            <h4>There is no such thing as ‘away’. When we throw anything away, it must go somewhere. – Annie Leonard</h4>
+            <h4>The world is changed by your example, not by your opinion. – Paulo Coelho</h4>
+            <h4> If we want to move towards a low-polluting, sustainable society, we need to get consumers to think about their purchases. – David Suzuki</h4>
         </div>
     )
 }
