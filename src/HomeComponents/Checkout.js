@@ -6,7 +6,7 @@ const Checkout = (props) => {
   let totalSum = 0
   if (props.current_booking.joiners.length > 0) {
     totalSum = props.current_booking.joiners.reduce((agg, joiner) => {
-      return agg + joiner.item_price}, 0)
+      return agg + joiner.item_price*joiner.quantity}, 0)
   }
 
     console.log("cart", props.current_booking.joiners)

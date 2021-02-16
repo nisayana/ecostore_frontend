@@ -1,49 +1,63 @@
-import React, { Component } from 'react';
-import {withRouter} from 'react-router-dom'
-import TextareaAutosize from 'react-textarea-autosize';
-import { Form, Button } from 'semantic-ui-react';
+import React from 'react';
+import {withRouter} from 'react-router-dom';
+import {Form} from 'semantic-ui-react'
 
+class ReviewForm extends React.Component {
 
-class ReviewForm extends Component {
-
-    state={
-      review: ""
+    state = {
+        content: ""
     }
-  
-    handleChange = (event) => {
-      let {name, value} = event.target
-      this.setState({
-          [name]: value,
-      })
-  }
-  
-  
-    handleSubmit=(evt)=>{
-      evt.preventDefault()
-      this.props.createReview(this.state)
-      this.setState({
-        review: ""
-      })
+
+    handleReviewForm = (evt) => {
+        console.log("handle review form")
+        if (this.props.token) {
+            fetch(`http://localhost:3000/reviews`, {
+                method: "POST",
+                headers: {
+                    'Content-type': 'Application/json',
+                    'authorization': this.props.token
+                },
+                body: JSON.stringify({
+                    item_id: this.props.item_id,
+                    content: this.state.content
+                })
+            })
+            .then(res => res.json())
+            .then((newReview) => {
+                this.props.addReviewToState(newReview)
+            })
+        } else {
+            this.props.history.push("/login")
+        }
+        this.setState({
+            content: ''
+        })
     }
-  
-  
+
+    handleChange = (evt) => {
+        let {name, value} = evt.target
+        this.setState({
+            [name]: value
+        })
+    }
+
     render() {
-      return (
-        <Form onSubmit={this.handleSubmit} hidden={localStorage.token ? false : true}>
-          <TextareaAutosize
-            className="comment-form-input"
-            label='Leave a review here:'
-            placeholder="Write your thoughts"
-            name="review"
-            value={this.state.review}
-            onChange={this.handleChange}
-          />
-          <br/>
-          <Button className="create-review-button" type='submit'>Submit</Button>
-        </Form>
-      );
+        return(
+            <div className="review-form">
+                <form onSubmit={this.handleReviewForm}>  
+                    <h3>Reviews:</h3>
+                        <Form>
+                        <Form.TextArea label='Share with us' 
+                            placeholder="Leave a review" 
+                            name="content" 
+                            id='leaveReviewForm'
+                            value={this.state.content} onChange={this.handleChange} />
+                        </Form>
+                    <input className="createReviewButton" type="submit" value="Submit"/>
+                </form>  
+            </div>
+        )
     }
-  
-  }
-  
-  export default ReviewForm;
+}
+
+export default withRouter(ReviewForm);

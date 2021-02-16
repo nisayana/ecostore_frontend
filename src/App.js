@@ -16,6 +16,7 @@ import MainContainer from './ItemComponents/MainContainer';
 
 import {Switch, Route, withRouter, Redirect, NavLink} from 'react-router-dom'
 import './App.css';
+import ItemFullCard from './ItemComponents/ItemFullCard';
 
 // import { Search } from 'semantic-ui-react';
 
@@ -24,7 +25,7 @@ import './App.css';
 class App extends React.Component {
 
   state = {
-    // id: 0,
+    id: 0,
     categories: [],
     items: [],
     token: "",
@@ -41,7 +42,6 @@ class App extends React.Component {
     this.setState({
       searchTerm: termFromChild
     })
-    // console.log("updating search")
   }
 
   componentDidMount() {
@@ -175,7 +175,7 @@ class App extends React.Component {
   }
 
   renderSpecificCategory = (routerProps) => {
-    console.log("router props", routerProps)
+    // console.log("router props", routerProps)
     let givenId = routerProps.match.params.id 
     // console.log("givenId", givenId)
     let selectedCategory = this.state.categories.find((categoryPojo) => {
@@ -188,7 +188,6 @@ class App extends React.Component {
           // console.log(category)
           return item.name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
         })
-        // console.log(this)
         return <MainContainer
         items={filteredArray} 
         category = {selectedCategory} 
@@ -200,6 +199,35 @@ class App extends React.Component {
         increaseItem = {this.increaseItem}
         decreaseItem = {this.decreaseItem}
         />
+    } else {
+        return <NotFound />
+    }
+  }
+
+
+  renderSpecificItem = (routerProps) => {
+    // console.log(routerProps)
+    let givenId = routerProps.match.params.id 
+    let selectedItem = this.state.items.find((itemPojo) => {
+      return itemPojo.id === parseInt(givenId)
+    })
+    // console.log(selectedItem)
+    if (selectedItem) {
+      console.log(selectedItem)
+      return <ItemFullCard
+      selectedItem={selectedItem}
+      token = {this.state.token}
+      past_bookings = {this.state.past_bookings}
+      current_booking = {this.state.current_booking}
+      addToMyBookings = {this.addToMyBookings}
+      deleteMyBooking = {this.deleteMyBooking}
+      increaseItem = {this.increaseItem}
+      decreaseItem = {this.decreaseItem}
+      addReviewToState = {this.addReviewToState}
+      reviews = {this.state.reviews}
+      user_id = {this.state.id}
+      username={this.state.username}
+      />
     } else {
         return <NotFound />
     }
@@ -239,7 +267,6 @@ class App extends React.Component {
       }
       return joiner
     })
-    console.log("hello")
     fetch(`http://localhost:3000/joiners/${increasedItem.id}`, {
       
       method: "PATCH",
@@ -260,10 +287,29 @@ class App extends React.Component {
   }
 
   decreaseItem = (decreasedItem) => {
-    let decreasedJoinerItem = this.state.current_booking.joiners.map(item => {
-
+    let decreasedJoinerItem = this.state.current_booking.joiners.map(joiner => {
+      if (decreasedItem.id === joiner.id) {
+        joiner.quantity--
+      }
+      return joiner
     })
-    this.setState()
+    // console.log("hello")
+    fetch(`http://localhost:3000/joiners/${decreasedItem.id}`, {
+      
+      method: "PATCH",
+      headers: {
+        "Content-Type": "Application/json"
+      },
+      body: JSON.stringify({
+        quantity: decreasedItem.quantity
+      })
+    })
+    .then(res => res.json())
+    .then((updatedSingleItem) => {
+      this.setState({
+        joiners: decreasedJoinerItem,
+      })
+    })
   }
 
 
@@ -338,11 +384,8 @@ class App extends React.Component {
     let {items, searchTerm} = this.state
 
     let filteredArray = items.filter((item) => {
-      // console.log(category)
       return item.name.toLowerCase().includes(searchTerm.toLowerCase())
     })
-    // console.log(filteredArray)
-
 
     return(
       <div className="App">
@@ -368,6 +411,7 @@ class App extends React.Component {
           decreaseItem = {this.decreaseItem}
           />} />
           <Route path='/categories/:id' exact render={this.renderSpecificCategory} />
+          <Route path='/items/:id' render={this.renderSpecificItem} />
           <Route path='/about' component={About}/>
           <Route path='/login' render={this.renderForm}/>
           <Route path="/register" render={this.renderForm}/>

@@ -10,7 +10,7 @@ class CategoryCard extends React.Component {
     }
 
     render() {
-        console.log("from Card", this.props)
+        // console.log("from Card", this.props)
         let {name, image, description, id} = this.props.categoryCard
 
 

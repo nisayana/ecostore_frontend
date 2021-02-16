@@ -20,8 +20,9 @@ const CurrentOrder = (props) => {
     props.increaseItem(joiner)
   }
 
-  const decreaseItem = (joiner) => {
+  const handleDecreaseItem = (joiner) => {
     console.log(joiner)
+    props.decreaseItem(joiner)
   }
 
   let arrOfComps = props.current_booking.joiners.map(joiner => {
@@ -29,9 +30,9 @@ const CurrentOrder = (props) => {
     return <div><p key={joiner.id}>{joiner.item_name}</p>
     <p key={joiner.id}>{joiner.item_price} $</p>
     <p> Quantity: {joiner.quantity} </p>
+    <button onClick={() => handleDecreaseItem(joiner)}>-</button>
     <button onClick={() => handleIncreaseItem(joiner)}>+</button>
     {/* <button onClick={props.handleIncreaseItem}>+</button> */}
-    <button onClick={() => decreaseItem(joiner)}>-</button>
     <br/>
     <button onClick={() => deleteItem(joiner)}>delete</button>
     </div>
@@ -45,7 +46,7 @@ const CurrentOrder = (props) => {
       </ul>
 
       {/* <h3>Total Price: $<span id="total">{totalSum}</span></h3> */}
-      <button onClick={handleCheckout} className="checkout-btn"> Pay </button>
+      <button onClick={handleCheckout} className="checkout-btn"></button>
     </div>
   )
 }
