@@ -45,8 +45,8 @@ class ReviewForm extends React.Component {
     render() {
         return(
             <div className="review-form">
+                <h3>Reviews:</h3>
                 <form onSubmit={this.handleReviewForm}>  
-                    <h3>Reviews:</h3>
                         <Form>
                         <Form.TextArea label='Share with us' 
                             placeholder="Leave a review" 

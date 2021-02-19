@@ -28,7 +28,7 @@ const CurrentOrder = (props) => {
   let arrOfComps = props.current_booking.joiners.map(joiner => {
     // console.log(joiner)
     return (<div>
-      <p key={joiner.id}>{joiner.item_name}</p>
+      <h3 key={joiner.id}>{joiner.item_name}</h3>
       <p key={joiner.id}>{joiner.item_price} $</p>
       <p> Quantity: {joiner.quantity} </p>
       <button onClick={() => handleDecreaseItem(joiner)}>-</button>

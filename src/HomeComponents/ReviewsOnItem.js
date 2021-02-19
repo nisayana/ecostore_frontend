@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Rating } from 'semantic-ui-react'
+import { Container } from 'semantic-ui-react'
 
 class ReviewsOnItem extends Component {
 
@@ -24,14 +24,15 @@ class ReviewsOnItem extends Component {
     
 
     return (
-      <h1>Hello from reviews on item</h1>
-      // <Container className="review-container">
-      //     {this.showDeleteButton()}
-      //     <p className="review-username">{username}</p>
-      //     <div className="comment-rating-card">
-      //       <p className="review-comment-card">{review}</p>
-      //     </div>
-      // </Container>
+      <div>
+        <Container className="review-container">
+          {this.handleDelete()}
+          <p className="review-username">{user_name}</p>
+          <div className="comment-card">
+            <p className="review-comment-card">{content}</p>
+          </div>
+      </Container>
+      </div>
     );
   }
 

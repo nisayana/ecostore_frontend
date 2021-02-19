@@ -6,7 +6,7 @@ import {Link, withRouter} from 'react-router-dom';
 class ItemCard extends React.Component {
 
     handleAddToACart = () => {
-        this.props.addToMyBookings(this.props.singleItem.id)
+        this.props.addToMyBookings(this.props.singleItem.id, this.props.singleItem.name)
     }
 
     handleFullItemCont = () => {

@@ -78,6 +78,7 @@ class ItemFullCard extends React.Component {
                     <h2>{price} $</h2>
                     <button className="button" onClick={this.handleAddToACart}>Add to cart</button>
                     <p>{overview}</p>
+                    {/* <h3>Reviews:</h3> */}
                     <div className='allReviews'>{reviews}</div>
                 </Link>
                 <ReviewForm id="review-container"

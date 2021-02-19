@@ -233,9 +233,22 @@ class App extends React.Component {
     }
   }
 
-  addToMyBookings = (item_id) => {
+  addToMyBookings = (item_id, name) => {
+    // console.log(name)
+    // console.log(this.state.current_booking.joiners)
     // check to see this.state.current_booking.joiners has an item with the same item_id as parameter 236
     // if the joiners array has an item with the same item_id as a parameter, run increase method function
+    const foundItem = this.state.current_booking.joiners.find((cartItem) => {
+      // debugger
+      return cartItem.item_name === name
+    })
+
+    // console.log(foundItem)
+    
+    if (foundItem) {
+      console.log(foundItem)
+      this.increaseItem(foundItem)
+    } else {
     fetch("http://localhost:3000/joiners", {
       method: "POST",
       headers: {
@@ -258,11 +271,13 @@ class App extends React.Component {
       }  
       this.setState({
         current_booking: copyOfCart
+        })
       })
-    })
+    }
   }
 
   increaseItem = (increasedItem) => {
+    console.log(increasedItem)
     let increasedJoinerItem = this.state.current_booking.joiners.map(joiner => {
       if (increasedItem.id === joiner.id) {
         joiner.quantity++
@@ -314,6 +329,10 @@ class App extends React.Component {
     })
   }
 
+  get itemsAmount() {
+    return this.state.current_booking.joiners.reduce((acc, prev) => prev.quantity + acc, 0)
+  }
+
 
   deleteMyBooking = (joiner) => {
     // console.log(joiner)
@@ -356,6 +375,8 @@ class App extends React.Component {
   }
 
   rednerProfile = (routerProps) => {
+    console.log(routerProps)
+
     if(this.state.token){
       return <Profile
         username={this.state.username}
@@ -369,6 +390,17 @@ class App extends React.Component {
     }
   }
 
+  searchFunc = (routerProps) =>{
+    console.log(this.props)
+    if(this.props.location.pathname === "/" || this.props.location.pathname.includes('/categories/')) {
+      return <Search
+      searchTerm={this.state.searchTerm}
+      changeSearchTerm={this.changeSearchTerm}
+      />
+    } 
+      return 
+  }
+
   render() {
 
     let arrayOfCategories = this.state.categories.map ((categoryPOJO)=>{
@@ -379,7 +411,6 @@ class App extends React.Component {
         </NavLink>
       )
     })
-    console.log(arrayOfCategories)
 
     const loggedIn = localStorage.token
     // console.log("app.js", loggedIn)
@@ -396,11 +427,9 @@ class App extends React.Component {
         handleLogOut={this.handleLogOut}
         username={this.state.username}
         arrayOfCategories={this.state.categories}
+        itemsAmount={this.itemsAmount}
         />
-        <Search
-        searchTerm={this.state.searchTerm}
-        changeSearchTerm={this.changeSearchTerm}
-        />
+        {this.searchFunc()}
         <Switch>
           <Route path="/" exact render={() => < HomeContainer
           items={filteredArray}

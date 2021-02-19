@@ -23,6 +23,7 @@ const arrOfComps = () => {
     return props.current_booking.joiners.map(joiner => <p key={joiner.id}>{joiner.item_name}</p>)
   }
 }
+
   return (
     <div className="order">
       {/* <h2>Cart</h2> */}
@@ -33,17 +34,17 @@ const arrOfComps = () => {
         :
         // arrOfComps()
         <CurrentOrder 
-        current_booking={props.current_booking}
-        increaseItem={props.increaseItem}
-        decreaseItem={props.decreaseItem}
-        deleteMyBooking={props.deleteMyBooking}
+          current_booking={props.current_booking}
+          increaseItem={props.increaseItem}
+          decreaseItem={props.decreaseItem}
+          deleteMyBooking={props.deleteMyBooking}
         />
         }
       </ul>
       <h3>Total Price: $<span id="total">{totalSum}</span></h3>
       <StripeComponent
-      price={totalSum}
-      sentToPastOrders={handleClick}
+        price={totalSum}
+        sentToPastOrders={handleClick}
       />
     </div>
   )

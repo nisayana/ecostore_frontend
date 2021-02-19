@@ -1,11 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 
-const NavBar = ({ loggedIn, handleLogOut, username, arrayOfCategories }) => {
+const NavBar = ({ loggedIn, handleLogOut, username, arrayOfCategories, itemsAmount }) => {
   // console.log(arrayOfCategories)
 
   let renderCategory = () => {
-    console.log(arrayOfCategories)
+    // console.log(arrayOfCategories)
     return arrayOfCategories.map((singleCategory) => {
       return (<li><Link to={`/categories/${singleCategory.id}`}>{singleCategory.name}</Link></li>)
     })
@@ -37,7 +37,7 @@ const NavBar = ({ loggedIn, handleLogOut, username, arrayOfCategories }) => {
 
         <li>
           <div >
-            <Link to={"/checkout"}>My cart</Link>
+            <Link to={"/checkout"}>My cart ({itemsAmount})</Link>
           </div>
         </li>
 
