@@ -1,6 +1,8 @@
 import React from 'react';
 import StripeComponent from '../ItemComponents/StripeComponent';
 import CurrentOrder from './CurrentOrder'
+import { Grid, Image, Header, Button } from "semantic-ui-react";
+
 
 const Checkout = (props) => {
   let totalSum = 0
@@ -26,7 +28,6 @@ const arrOfComps = () => {
 
   return (
     <div className="order">
-      {/* <h2>Cart</h2> */}
       <ul id="order-list">
         { totalSum === 0
         ?
@@ -41,7 +42,9 @@ const arrOfComps = () => {
         />
         }
       </ul>
+
       <h3>Total Price: $<span id="total">{totalSum}</span></h3>
+
       <StripeComponent
         price={totalSum}
         sentToPastOrders={handleClick}

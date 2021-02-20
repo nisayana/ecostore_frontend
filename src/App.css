@@ -1,7 +1,8 @@
-body {
+/* body {
   margin: 0;
   font-family: monospace;
-}
+  background-color: rgb(188, 247, 247);
+} */
 
 #header-home {
   margin-top: 1em;
@@ -14,6 +15,8 @@ body {
 }
 
 h1#header-home {
+  /* padding-top: 1em; */
+  /* padding: auto; */
   font-size: 40px;
 }
 
@@ -95,16 +98,17 @@ button:hover {
   /* grid-area: o; */
 }
 
-/* #order-list {
+.cart-items {
   width: 100%;
   column-count: 4;
   padding: 0;
-} */
+}
 
  
 .item-container {
   width: 100%;
-  column-count: 3;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .item-card {
@@ -130,7 +134,7 @@ button:hover {
 }
 
 .item-image {
-  width: 85%;
+  width: 95%;
   height: 200px;
   border-radius: 20px;
 }

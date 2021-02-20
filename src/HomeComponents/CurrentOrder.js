@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { Grid, Image, Header, Button } from "semantic-ui-react";
+
 
 const CurrentOrder = (props) => {
 
@@ -27,13 +29,13 @@ const CurrentOrder = (props) => {
 
   let arrOfComps = props.current_booking.joiners.map(joiner => {
     // console.log(joiner)
-    return (<div>
+    return (<div className="cart-items">
       <h3 key={joiner.id}>{joiner.item_name}</h3>
-      <p key={joiner.id}>{joiner.item_price} $</p>
-      <p> Quantity: {joiner.quantity} </p>
+      <p>{joiner.item_price} $</p>
+      <p> Quantity: {joiner.quantity}
       <button onClick={() => handleDecreaseItem(joiner)}>-</button>
       <button onClick={() => handleIncreaseItem(joiner)}>+</button>
-      <br/>
+      </p>
       <button onClick={() => deleteItem(joiner)}>delete</button>
     </div>)
   })

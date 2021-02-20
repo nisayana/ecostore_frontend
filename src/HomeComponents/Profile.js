@@ -10,9 +10,9 @@ class Profile extends React.Component {
     }
 
     render() {
-        console.log("profile", this.props)
+        // console.log("profile", this.props)
         return(
-            <div className="container">
+            <div className="order-list">
                 {/* <h1>hello</h1> */}
                 {/* <CurrentOrder currentOrder={this.props.current_booking}/> */}
                 <PastOrders past_bookings={this.props.past_bookings} />
