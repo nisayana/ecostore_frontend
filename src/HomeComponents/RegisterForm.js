@@ -25,7 +25,7 @@ class RegisterForm extends Component {
     let {name, password, email} = this.state
 
     return (
-      <div className='registerForm'>
+      <div className='loginForm'>
       <form onSubmit={this.handleSubmit}>
         <h1>{formName}</h1>
 

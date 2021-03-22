@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Form, Input, TextArea, Button } from 'semantic-ui-react'
+
 
 class LoginForm extends Component {
 
@@ -26,7 +28,7 @@ class LoginForm extends Component {
         let {username, password} = this.state
 
         return (
-            // <div className="loginForm">
+            <div className="loginForm">
                 <form onSubmit={this.handleSubmit}>
                     {/* <h1>{formName}</h1> */}
                     <label htmlFor="username">Username:</label>
@@ -35,7 +37,7 @@ class LoginForm extends Component {
                     <input type="password" autoComplete="off" name="password" value={password} onChange={this.handleChange}/>
                     <input type="submit" value="Submit" className="auth"/>
                 </form>
-            // </div>
+            </div>
         );
     }
 }

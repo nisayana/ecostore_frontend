@@ -162,3 +162,18 @@ button:hover {
   width: 100%;
   column-count: 1;
 }
+
+.loginForm {
+  width: 40%;
+  margin: 0 auto;
+  padding: 2% 8%;
+}
+
+.loginForm > placeholder {
+  text-align: center
+}
+
+.loginForm input {
+  width: 100%;
+  margin-top: 10px;
+}
