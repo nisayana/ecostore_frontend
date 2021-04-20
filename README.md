@@ -21,6 +21,7 @@ Frontend
 * JWT - securing tokens
 * PostgreSQL [>= 0.18, < 2.0] - Database
 * Stripe - Stripe Ruby gives access to the Stripe API from applications written in the Ruby language
+* Cloudinary
 
 ### Features
 
