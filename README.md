@@ -11,7 +11,7 @@ Frontend
 * Custom CSS3 styling
 * React Stripe Checkout [^2.6.3]
 
-[Backend ~ API](https://github.com/ecostore_backend)
+[Backend ~ API](https://github.com/nisayana/ecostore_backend)
 
 * Ruby [2.6.1]
 * Rails [~> 5.2.3] - MVC web framework used as an API
