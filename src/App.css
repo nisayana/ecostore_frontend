@@ -70,7 +70,6 @@ button:hover {
   padding: 1rem;
   width: stretch;
   height: auto;
-  /* background: #515DA2; */
   opacity: .8;
 }
 
@@ -95,7 +94,6 @@ button:hover {
 
 .order {
   text-align: center;
-  /* grid-area: o; */
 }
 
 .cart-items {
@@ -113,28 +111,15 @@ button:hover {
 
 .item-card {
   text-align: center;
-  /* border: grey solid 1px; */
   padding: 1rem;
   width: 20rem;
   height: 25rem;
   display: inline-grid;
   margin: 1rem 2rem;
-  /* box-shadow: 3px 4px #e9dfe0 */
-  /* height: 800px;
-  width: 100%; */
-  /* text-align: center;
-  border: grey solid 1px;
-  padding: 1rem;
-  width: 12rem;
-  height: 10rem;
-  display: inline-grid;
-  margin: 1rem 1rem;
-  box-shadow: 3px 4px #e9dfe0 */
-
 }
 
 .item-image {
-  width: 95%;
+  width: 260px;
   height: 200px;
   border-radius: 20px;
 }
@@ -151,16 +136,18 @@ button:hover {
 }
 
 .item-fullcard {
-  width: 100%;
-  padding: 10px;
-  column-count: 3;
+  margin-left: 10%;
+  width: 80%;
+  align-items: center;
+  padding: 10px; 
+  column-count: 2;
   justify-content: center;
-
 }
 
-#review-container {
-  width: 100%;
-  column-count: 1;
+.review-form {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
 }
 
 .loginForm {
@@ -177,3 +164,7 @@ button:hover {
   width: 100%;
   margin-top: 10px;
 }
+
+/* .createReviewButton {
+  justify-self: center;
+} */

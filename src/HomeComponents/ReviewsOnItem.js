@@ -8,11 +8,12 @@ class ReviewsOnItem extends Component {
   }
 
   handleDelete = (evt) => {
-    fetch(`http://localhsot:3000/reviews/${this.props.review.id}`, {
+    fetch(`http://localhost:3000/reviews/${this.props.review.id}`, {
       method: "DELETE"
     })
     .then(res => res.json())
     .then((deletedObj) => {
+      console.log(deletedObj)
       this.props.deleteReview(deletedObj.id)
     })
   }
@@ -21,19 +22,33 @@ class ReviewsOnItem extends Component {
     console.log(this.props.review);
     let {content, user_name} = this.props.review
 
-    
+    console.log(this.props)
 
-    return (
-      <div>
-        <Container className="review-container">
-          {this.handleDelete()}
-          <p className="review-username">{user_name}</p>
-          <div className="comment-card">
-            <p className="review-comment-card">{content}</p>
-          </div>
-      </Container>
-      </div>
-    );
+    if (this.props.user_id === this.props.review.user_id) {
+      return (
+        <div>
+          <Container className="review-container">
+            <p className="review-username">{user_name}</p>
+            <div className="comment-card">
+              <p className="review-comment-card">{content}</p>
+            </div>
+            <button onClick={this.handleDelete}>Delete</button>
+        </Container>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Container className="review-container">
+            <p className="review-username">{user_name}</p>
+            <div className="comment-card">
+              <p className="review-comment-card">{content}</p>
+            </div>
+            {/* <button onClick={this.handleDelete}>Delete</button> */}
+        </Container>
+        </div>
+      );
+    }
   }
 
 }

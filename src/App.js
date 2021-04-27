@@ -18,9 +18,6 @@ import {Switch, Route, withRouter, Redirect, NavLink} from 'react-router-dom'
 import './App.css';
 import ItemFullCard from './ItemComponents/ItemFullCard';
 
-// import { Search } from 'semantic-ui-react';
-
-
 
 class App extends React.Component {
 
