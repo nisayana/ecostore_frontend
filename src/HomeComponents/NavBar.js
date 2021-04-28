@@ -13,18 +13,8 @@ const NavBar = ({ loggedIn, handleLogOut, username, arrayOfCategories, itemsAmou
 
   return(
     <ul className="nav">
-        {/* <li>
-          {arrayOfCategories}
-        </li> */}
         <li>
-          <Link to={"/"}>Home
-            {/* <div >
-            <img
-                src="https://res.cloudinary.com/dv588hi0a/image/upload/c_scale,h_72/v1605157616/istockphoto-867037792-612x612_w8hfiq.jpg"
-                alt="yoga logo"
-            />
-            </div> */}
-          </Link>
+          <Link to={"/"}>Home</Link>
         </li>
 
         <li>

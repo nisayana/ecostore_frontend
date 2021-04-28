@@ -54,7 +54,7 @@ class ReviewForm extends React.Component {
                             id='leaveReviewForm'
                             value={this.state.content} onChange={this.handleChange} />
                         </Form>
-                    <input className="createReviewButton" type="submit" value="Submit"/>
+                    <input id="createReviewButton" type="submit" value="Submit"/>
                 </form>  
             </div>
         )

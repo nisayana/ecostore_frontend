@@ -19,10 +19,7 @@ class ReviewsOnItem extends Component {
   }
 
   render() {
-    console.log(this.props.review);
     let {content, user_name} = this.props.review
-
-    console.log(this.props)
 
     if (this.props.user_id === this.props.review.user_id) {
       return (

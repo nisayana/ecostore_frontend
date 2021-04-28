@@ -124,6 +124,19 @@ button:hover {
   border-radius: 20px;
 }
 
+.item-fullcard {
+  display: flex;
+  margin-left: 10%;
+  width: 80%;
+  align-items: center;
+  padding: 10px; 
+  justify-content: center;
+}
+
+.column {
+  flex: 50%;
+}
+
 #search input[type=text] {
   padding: 8px;
   margin-bottom: 3em;
@@ -135,15 +148,6 @@ button:hover {
   /* border-radius: 20px; */
 }
 
-.item-fullcard {
-  margin-left: 10%;
-  width: 80%;
-  align-items: center;
-  padding: 10px; 
-  column-count: 2;
-  justify-content: center;
-}
-
 .review-form {
   margin-left: auto;
   margin-right: auto;
@@ -151,7 +155,8 @@ button:hover {
 }
 
 .loginForm {
-  width: 40%;
+  width: 60%;
+  justify-self: center;
   margin: 0 auto;
   padding: 2% 8%;
 }
@@ -163,8 +168,17 @@ button:hover {
 .loginForm input {
   width: 100%;
   margin-top: 10px;
-}
+} 
 
-/* .createReviewButton {
-  justify-self: center;
-} */
+#createReviewButton {
+  display: flex;  
+  justify-content: center;  
+  position: relative;
+  background-color: #131518;
+  border: none;
+  border-radius: 5px;
+  width: 120px;
+  height: 20px;
+  color: whitesmoke;
+  font-size: 12px;
+}

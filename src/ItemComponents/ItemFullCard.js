@@ -73,20 +73,24 @@ class ItemFullCard extends React.Component {
         return(
             <div>
                 <Link to={`/items/${id}`}>
-                    <h2>{name}</h2>
                     <div className="item-fullcard">
-                        <img src={image} alt={this.props.selectedItem.name} className="item-image" />
-                        <h3>{price} $</h3>
-                        <button className="button" onClick={this.handleAddToACart}>Add to cart</button>
-                        <p>{overview}</p>
+                        <div className="column">
+                            <img src={image} alt={this.props.selectedItem.name} className="item-image" />
+                        </div>
+                        <div className="column">
+                            <h2>{name}</h2> 
+                            <h3>{price} $</h3>
+                            <button className="button" onClick={this.handleAddToACart}>Add to cart</button>
+                            <p>{overview}</p>
+                        </div>
                     </div>
-                <div className='allReviews'>{reviews}</div>
                 </Link>
                 <ReviewForm
                     item={this.props.selectedItem}
                     token={this.props.token} 
                     addReviewToState={this.addReviewToState}
                 />
+                <div className='allReviews'>{reviews}</div>
             </div>
         )
     }
