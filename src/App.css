@@ -138,14 +138,16 @@ button:hover {
 }
 
 #search input[type=text] {
+  justify-content: center;
   padding: 8px;
-  margin-bottom: 3em;
+  /* margin-bottom: 3em; */
   font-size: 15px;
   border: 1px solid grey;
   float: center;
-  width: 20%;
+  display: block;
+  margin: 0 auto 3em auto;
+  width: 400px;
   background: #f1f1f1;
-  /* border-radius: 20px; */
 }
 
 .review-form {
@@ -181,4 +183,12 @@ button:hover {
   height: 20px;
   color: whitesmoke;
   font-size: 12px;
+}
+
+.slogan {
+  /* font-size: large; */
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
