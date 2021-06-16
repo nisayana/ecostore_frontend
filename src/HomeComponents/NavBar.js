@@ -13,8 +13,8 @@ const NavBar = ({ loggedIn, handleLogOut, username, arrayOfCategories, itemsAmou
 
   return(
     <ul className="nav">
-        <li>
-          <Link to={"/"}>Home</Link>
+        <li id="homepage">
+          <Link to={"/"}>ecostore</Link>
         </li>
 
         <li>

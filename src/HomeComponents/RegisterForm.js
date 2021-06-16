@@ -25,37 +25,38 @@ class RegisterForm extends Component {
     let {name, password, email} = this.state
 
     return (
-      <div className='loginForm'>
-      <form onSubmit={this.handleSubmit}>
-        <h1>{formName}</h1>
-
-        <label htmlFor="name">Name:</label>
-        <input type="text" autoComplete="off" 
-          name="name" 
-          value={name} 
-          onChange={this.handleChange}
+      <div id='log-in-form'>
+        <form onSubmit={this.handleSubmit}>
+          {/* <h1>Sign up</h1> */}
+          <div className="field">
+          <label htmlFor="name">Name:</label>
+          <input type="text" autoComplete="off" 
+            name="name" 
+            value={name} 
+            onChange={this.handleChange}
           />
-
-        <label htmlFor="email">Email:</label>
-        <input type="text" autoComplete="off" 
-          name="email" 
-          value={email} 
-          onChange={this.handleChange}
+        </div>
+        <div className="field">
+          <label htmlFor="email">Email:</label>
+          <input type="text" autoComplete="off" 
+            name="email" 
+            value={email} 
+            onChange={this.handleChange}
           />
-
-
-        <label htmlFor="password">Password:</label>
-        <input type="password" autoComplete="off" 
-          name="password" 
-          value={password} 
-          onChange={this.handleChange}
-        />
-        <input className= 'registerFormSubmit' type="submit" value="Submit"/>
+        </div>
+        <div className="field">
+          <label htmlFor="password">Password:</label>
+          <input type="password" autoComplete="off" 
+            name="password" 
+            value={password} 
+            onChange={this.handleChange}
+          />
+        </div>
+        <button className="signin-button">Sign up</button>
       </form>
       </div>
     );
   }
-
 }
 
 export default RegisterForm;

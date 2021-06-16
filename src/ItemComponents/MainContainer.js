@@ -10,7 +10,6 @@ function MainContainer(props){
             
             <ItemContainer 
             items = {props.items}
-            //  category = {props.category} 
             token = {props.token}
             past_bookings = {props.past_bookings}
             current_booking = {props.current_booking}

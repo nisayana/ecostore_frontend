@@ -22,13 +22,9 @@ class CategoryCard extends React.Component {
                         <h2>{this.props.categoryCard.name}</h2>
                     </Link>
                     <p>{this.props.categoryCard.description}</p>
-                </div>
-            
-            
+                </div>   
             </div>
         )
-
-
     }
 }
 
