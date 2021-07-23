@@ -28,7 +28,7 @@ const arrOfComps = () => {
 
   return (
     <div className="order">
-      <ul id="order-list">
+      <ul className="order-list">
         { totalSum === 0
         ?
         <p>Your cart is empty</p>

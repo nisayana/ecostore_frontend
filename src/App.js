@@ -57,6 +57,7 @@ class App extends React.Component {
     })
 
     if(localStorage.token){
+      debugger
       fetch("http://localhost:3000/keep_logged_in", {
         method: "GET",
         headers: {
@@ -65,6 +66,9 @@ class App extends React.Component {
       })
       .then(res => res.json())
       .then(this.helpHandleResponse)
+    } else {
+      debugger
+      return <Redirect to="/login"/>
     }
   }
 
@@ -243,7 +247,7 @@ class App extends React.Component {
     // console.log(foundItem)
     
     if (foundItem) {
-      console.log(foundItem)
+      // console.log(foundItem)
       this.increaseItem(foundItem)
     } else {
     fetch("http://localhost:3000/joiners", {
@@ -259,7 +263,6 @@ class App extends React.Component {
     })
     .then(res => res.json())
     .then(newBooking => {
-      // debugger
       let copyOfJoinersForCart = [...this.state.current_booking.joiners, newBooking]
       // console.log(copyOfJoinersForCart)
       let copyOfCart = {
@@ -294,10 +297,9 @@ class App extends React.Component {
     .then(res => res.json())
     .then((updatedSingleItem) => {
       this.setState({
-        joiners: increasedJoinerItem,
+        joiners: increasedJoinerItem
       })
     })
-
   }
 
   decreaseItem = (decreasedItem) => {

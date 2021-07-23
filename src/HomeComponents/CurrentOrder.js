@@ -17,8 +17,7 @@ const CurrentOrder = (props) => {
   }
 
   const handleIncreaseItem = (joiner) => {
-    // console.log("increase", joiner)
-    // console.log(props.current_booking)
+    // debugger
     props.increaseItem(joiner)
   }
 
@@ -43,7 +42,7 @@ const CurrentOrder = (props) => {
   return (
     <div className="order">
       <h2>Your orders:</h2>
-      <ul id="order-list">
+      <ul className="order-list">
         {arrOfComps}
       </ul>
 
