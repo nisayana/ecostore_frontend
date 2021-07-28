@@ -27,6 +27,9 @@ class App extends React.Component {
     items: [],
     token: "",
     username: "",
+    first_name: "",
+    last_name: "",
+    address: "",
     current_booking: {
       id: 0,
       joiners: []
@@ -57,7 +60,7 @@ class App extends React.Component {
     })
 
     if(localStorage.token){
-      debugger
+      // debugger
       fetch("http://localhost:3000/keep_logged_in", {
         method: "GET",
         headers: {
@@ -67,7 +70,7 @@ class App extends React.Component {
       .then(res => res.json())
       .then(this.helpHandleResponse)
     } else {
-      debugger
+      // debugger
       return <Redirect to="/login"/>
     }
   }
@@ -77,6 +80,10 @@ class App extends React.Component {
     this.setState({
       id: 0,
       username: "",
+      first_name: "",
+      last_name: "",
+      address: "",
+      email: "",
       token: "",
       current_booking: {
         id: 0,
@@ -278,6 +285,7 @@ class App extends React.Component {
 
   increaseItem = (increasedItem) => {
     console.log(increasedItem)
+    if (localStorage.token) {
     let increasedJoinerItem = this.state.current_booking.joiners.map(joiner => {
       if (increasedItem.id === joiner.id) {
         joiner.quantity++
@@ -300,6 +308,9 @@ class App extends React.Component {
         joiners: increasedJoinerItem
       })
     })
+  } else {
+      this.props.history.push("/login")
+    }
   }
 
   decreaseItem = (decreasedItem) => {
@@ -374,11 +385,15 @@ class App extends React.Component {
   }
 
   rednerProfile = (routerProps) => {
-    console.log(routerProps)
+    // console.log(routerProps)
 
     if(this.state.token){
       return <Profile
         username={this.state.username}
+        first_name={this.state.first_name}
+        last_name={this.state.last_name}
+        email={this.state.email}
+        address={this.state.address}
         current_booking={this.state.current_booking}
         past_bookings={this.state.password}
         id={this.state.id}
@@ -387,6 +402,10 @@ class App extends React.Component {
     } else {
       return <Redirect to="/login"/>
     }
+  }
+
+  renderProfileUpdate = (routerProps) => {
+
   }
 
   searchFunc = (routerProps) =>{
@@ -461,6 +480,7 @@ class App extends React.Component {
             past_bookings={this.state.past_bookings}
             />
           </Route>
+          <Route path="/profile/edit" exact render={this.renderProfileUpdate} />
         </Switch>
       </div>
     )
