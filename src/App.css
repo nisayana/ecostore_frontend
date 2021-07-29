@@ -117,12 +117,16 @@ button:hover {
   justify-content: center;
 }
 
-.cart-items {
+.shopping-cart {
   width: 100%;
-  column-count: 5;
+  column-count: 7;
   padding: 0;
 }
 
+#cart-img {
+  float: left;
+  width: 30%;
+}
  
 .item-container {
   width: 100%;
@@ -264,3 +268,4 @@ button:hover {
   margin-top: 20px;
   margin-bottom: 10px;
 }
+
