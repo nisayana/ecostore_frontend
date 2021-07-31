@@ -121,6 +121,8 @@ button:hover {
   width: 100%;
   column-count: 7;
   padding: 0;
+  /* text-align: center;
+  justify-content: center; */
 }
 
 #cart-img {

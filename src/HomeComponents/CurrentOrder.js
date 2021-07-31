@@ -28,7 +28,7 @@ const CurrentOrder = (props) => {
 
   let arrOfComps = props.current_booking.joiners.map(joiner => {
     // console.log(joiner)
-    return (<div className="shopping-cart">
+    return (<div className="shopping-cart cart">
       <img src={joiner.item_image} alt="image" id="cart-img" />
       <h3 key={joiner.id}>{joiner.item_name}</h3>
       <p>{joiner.item_price} $</p>

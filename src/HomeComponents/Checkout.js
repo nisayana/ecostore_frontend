@@ -27,7 +27,7 @@ const arrOfComps = () => {
 }
 
   return (
-    <div className="order">
+    <div className="order center">
       <ul className="order-list">
         { totalSum === 0
         ?

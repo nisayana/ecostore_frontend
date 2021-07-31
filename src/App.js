@@ -134,32 +134,13 @@ class App extends React.Component {
   }
 
   helpHandleResponse = (resp) => {
-    // console.log("response", resp)
     if(resp.error){
       console.error(resp.error)
     } else {
       localStorage.token = resp.token
       this.setState({
-        // id: resp.user.id,
-        token: resp.token,
-        username: resp.user.username,
-        current_booking: resp.user.current_booking,
-        past_bookings: resp.user.past_bookings
+        ...resp.user
       })
-      // this.props.history.push("/profile")
-    }
-  }
-
-  renderProfile = () => {
-    if(this.state.token){
-      return <Profile 
-        username={this.state.username}
-        // past_bookings={this.state.past_bookings}
-        current_booking={this.state.current_booking}
-        handleLogOut={this.handleLogOut}
-      />
-    } else{
-      return <Redirect to="login"/>
     }
   }
 
@@ -384,8 +365,7 @@ class App extends React.Component {
       })
   }
 
-  rednerProfile = (routerProps) => {
-    // console.log(routerProps)
+  renderProfile = () => {
 
     if(this.state.token){
       return <Profile
@@ -475,9 +455,20 @@ class App extends React.Component {
             />
           </Route>
           <Route path="/profile">
-            <Profile
-            renderProfile={this.rednerProfile}
+            {/* <Profile
+            renderProfile={this.renderProfile}
             past_bookings={this.state.past_bookings}
+            /> */}
+            <Profile
+              username={this.state.username}
+              first_name={this.state.first_name}
+              last_name={this.state.last_name}
+              email={this.state.email}
+              address={this.state.address}
+              current_booking={this.state.current_booking}
+              past_bookings={this.state.past_bookings}
+              id={this.state.id}
+              token={this.state.token}
             />
           </Route>
           <Route path="/profile/edit" exact render={this.renderProfileUpdate} />

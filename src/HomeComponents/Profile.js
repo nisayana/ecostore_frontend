@@ -21,7 +21,8 @@ class Profile extends React.Component {
             <div>
                 <h1>Welcome!</h1>
                 <div className="user-info">
-                    <Icon name='user circle' inverted color='black' id='userAvatar'/> 
+                    <img src="" alt="image"/>
+                    {/* <Icon name='user circle' inverted color='black' id='userAvatar'/>  */}
                     <p> {this.props.first_name} {this.props.last_name}</p>
                     <p><strong>Email: </strong>{this.props.email}</p>
                     <p><strong>Address:</strong> {this.props.address}</p>
