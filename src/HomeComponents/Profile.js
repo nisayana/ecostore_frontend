@@ -11,22 +11,20 @@ class Profile extends React.Component {
         this.props.handleLogOut()
     }
 
-    handleClick = () => {
+    handleUpdateInfo = () => {
         this.props.history.push('/profile/edit')
     }
 
     render() {
-        console.log("profile", this.props)
         return(
             <div>
                 <h1>Welcome!</h1>
                 <div className="user-info">
-                    <img src="" alt="image"/>
-                    {/* <Icon name='user circle' inverted color='black' id='userAvatar'/>  */}
+                    <img src="https://cdn1.iconfinder.com/data/icons/metro-ui-dock-icon-set--icons-by-dakirby/512/Personal.png" alt="image" id="userAvatar"/>
                     <p> {this.props.first_name} {this.props.last_name}</p>
                     <p><strong>Email: </strong>{this.props.email}</p>
                     <p><strong>Address:</strong> {this.props.address}</p>
-                    <button onClick={this.handleClick}>Update Information</button>
+                    <button onClick={this.handleUpdateInfo}>Update Information</button>
                 </div>
                 <div className="order-list">
                     {/* <h1>hello</h1> */}

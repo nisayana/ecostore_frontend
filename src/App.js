@@ -1,20 +1,21 @@
 import React from 'react';
 import NotFound from './NotFound';
 
-import About from './HomeComponents/About'
-import Checkout from './HomeComponents/Checkout'
+import About from './HomeComponents/About';
+import Checkout from './HomeComponents/Checkout';
 import HomeContainer from './HomeComponents/HomeContainer';
-import LoginForm from './HomeComponents/LoginForm'
+import LoginForm from './HomeComponents/LoginForm';
 import NavBar from './HomeComponents/NavBar';
-import PastOrders from './HomeComponents/PastOrders'
+import PastOrders from './HomeComponents/PastOrders';
 import Profile from './HomeComponents/Profile';
-import RegisterForm from './HomeComponents/RegisterForm'
-import Search from './HomeComponents/Search'
+import UpdateUserProfile from './HomeComponents/UpdateUserProfile';
+import RegisterForm from './HomeComponents/RegisterForm';
+import Search from './HomeComponents/Search';
 
 import ItemContainer from './ItemComponents/ItemContainer';
 import MainContainer from './ItemComponents/MainContainer';
 
-import {Switch, Route, withRouter, Redirect, NavLink} from 'react-router-dom'
+import {Switch, Route, withRouter, Redirect, NavLink} from 'react-router-dom';
 import './App.css';
 import ItemFullCard from './ItemComponents/ItemFullCard';
 
@@ -366,26 +367,41 @@ class App extends React.Component {
   }
 
   renderProfile = () => {
-
     if(this.state.token){
       return <Profile
-        username={this.state.username}
-        first_name={this.state.first_name}
-        last_name={this.state.last_name}
-        email={this.state.email}
-        address={this.state.address}
-        current_booking={this.state.current_booking}
-        past_bookings={this.state.password}
-        id={this.state.id}
-        token={this.state.token}
+        // username={this.state.username}
+        // first_name={this.state.first_name}
+        // last_name={this.state.last_name}
+        // email={this.state.email}
+        // address={this.state.address}
+        // current_booking={this.state.current_booking}
+        // past_bookings={this.state.password}
+        // id={this.state.id}
+        // token={this.state.token}
       />
     } else {
       return <Redirect to="/login"/>
     }
   }
 
-  renderProfileUpdate = (routerProps) => {
-
+  renderProfileUpdate = () => {
+    console.log("hi")
+    if(this.state.token){
+      return <div>
+        <UpdateUserProfile
+          username={this.state.username} 
+          first_name={this.state.first_name}
+          last_name={this.state.last_name}
+          email={this.state.email}
+          address={this.state.address}
+          password={this.state.password}
+          user_id ={this.state.id}
+          // handleUpdateSubmit={this.handleUpdateSubmit}
+        />
+      </div> 
+    } else {
+      return <Redirect to="/profile" />
+    }
   }
 
   searchFunc = (routerProps) =>{
@@ -455,10 +471,6 @@ class App extends React.Component {
             />
           </Route>
           <Route path="/profile">
-            {/* <Profile
-            renderProfile={this.renderProfile}
-            past_bookings={this.state.past_bookings}
-            /> */}
             <Profile
               username={this.state.username}
               first_name={this.state.first_name}
@@ -471,7 +483,10 @@ class App extends React.Component {
               token={this.state.token}
             />
           </Route>
-          <Route path="/profile/edit" exact render={this.renderProfileUpdate} />
+          <Route path="/profile/edit">
+            <UpdateUserProfile />
+          </Route> 
+            
         </Switch>
       </div>
     )
