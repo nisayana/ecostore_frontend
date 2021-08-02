@@ -366,8 +366,10 @@ class App extends React.Component {
       })
   }
 
-  renderProfile = () => {
-    if(this.state.token){
+  renderProfile = (routerProps) => {
+    if(this.state.id){
+      console.log(this.state.token)
+    // if(this.state.id){
       return <Profile
         // username={this.state.username}
         // first_name={this.state.first_name}
@@ -380,6 +382,7 @@ class App extends React.Component {
         // token={this.state.token}
       />
     } else {
+      // this.state.history.push("/login")
       return <Redirect to="/login"/>
     }
   }
@@ -458,8 +461,8 @@ class App extends React.Component {
           <Route path='/categories/:id' exact render={this.renderSpecificCategory} />
           <Route path='/items/:id' render={this.renderSpecificItem} />
           <Route path='/about' component={About}/>
-          <Route path='/login' render={this.renderForm}/>
-          <Route path="/register" render={this.renderForm}/>
+          <Route path='/login' exact render={this.renderForm}/>
+          <Route path="/register" exact render={this.renderForm}/>
           <Route path="/checkout">
             <Checkout
             currentCartIntoPastOrder={this.currentCartIntoPastOrder}
@@ -470,8 +473,8 @@ class App extends React.Component {
             // past_bookings={this.state.past_bookings}
             />
           </Route>
-          <Route path="/profile">
-            <Profile
+          <Route path="/profile" exact render={this.renderProfile}
+            /* <Profile
               username={this.state.username}
               first_name={this.state.first_name}
               last_name={this.state.last_name}
@@ -481,8 +484,8 @@ class App extends React.Component {
               past_bookings={this.state.past_bookings}
               id={this.state.id}
               token={this.state.token}
-            />
-          </Route>
+            /> */
+          />
           <Route path="/profile/edit">
             <UpdateUserProfile />
           </Route> 
