@@ -4,7 +4,8 @@ import { Container } from 'semantic-ui-react'
 class ReviewsOnItem extends Component {
 
   state={
-    content: ""
+    content: "",
+    rating: ""
   }
 
   handleDelete = (evt) => {
@@ -19,7 +20,7 @@ class ReviewsOnItem extends Component {
   }
 
   render() {
-    let {content, user_name} = this.props.review
+    let {content, rating, user_name} = this.props.review
 
     if (this.props.user_id === this.props.review.user_id) {
       return (

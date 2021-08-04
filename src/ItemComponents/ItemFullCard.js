@@ -13,6 +13,7 @@ class ItemFullCard extends React.Component {
         fetch(`http://localhost:3000/items/${this.props.selectedItem.id}`)
         .then(res => res.json())
         .then((itemPojo) => {
+            // console.log(itemPojo)
             this.setState({
                 reviews: itemPojo.reviews
             })

@@ -12,13 +12,14 @@ class Profile extends React.Component {
     }
 
     handleUpdateInfo = () => {
-        this.props.history.push('/profile/edit')
+        console.log("update info")
+        this.props.history.push("/profile/edit")
     }
 
     render() {
         return(
             <div>
-                <h1>Welcome!</h1>
+                {/* <h1>Welcome!</h1> */}
                 <div className="user-info">
                     <img src="https://cdn1.iconfinder.com/data/icons/metro-ui-dock-icon-set--icons-by-dakirby/512/Personal.png" alt="image" id="userAvatar"/>
                     <p> {this.props.first_name} {this.props.last_name}</p>

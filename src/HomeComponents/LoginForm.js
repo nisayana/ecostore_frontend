@@ -10,7 +10,7 @@ class LoginForm extends Component {
     }
 
     handleSubmit = (evt) => {
-        console.log("handleSubmit", this)
+        // console.log("handleSubmit", this)
         evt.preventDefault()
         this.props.handleSubmit(this.state)
     }
@@ -27,8 +27,8 @@ class LoginForm extends Component {
         let {username, password} = this.state
 
         return (
-            <>
-                <form id="log-in-form" onSubmit={this.handleSubmit}>
+            <div class="login-form" >
+                <form onSubmit={this.handleSubmit}>
                     {/* <h1>{formName}</h1> */}
                     <div className="field">
                         <label htmlFor="username">Username:</label>
@@ -40,7 +40,7 @@ class LoginForm extends Component {
                     </div>
                     <button className="signin-button">Sign in</button>
                 </form>
-            </>
+            </div>
         //     <div className="loginForm">
         //     <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         //     <Grid.Column style={{ maxWidth: 450 }}>

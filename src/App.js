@@ -61,7 +61,6 @@ class App extends React.Component {
     })
 
     if(localStorage.token){
-      // debugger
       fetch("http://localhost:3000/keep_logged_in", {
         method: "GET",
         headers: {
@@ -71,7 +70,6 @@ class App extends React.Component {
       .then(res => res.json())
       .then(this.helpHandleResponse)
     } else {
-      // debugger
       return <Redirect to="/login"/>
     }
   }
@@ -116,15 +114,14 @@ class App extends React.Component {
 
 
   handleRegisterSubmit = (userInfo) => {
-    console.log("Register form has been submitted")
-
+    // console.log("Register form has been submitted")
     fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
         "Content-Type": "Application/json"
       },
       body: JSON.stringify({
-        username: userInfo.name,
+        username: userInfo.username,
         password: userInfo.password,
         email: userInfo.email
       })
@@ -140,16 +137,17 @@ class App extends React.Component {
     } else {
       localStorage.token = resp.token
       this.setState({
-        ...resp.user
+        ...resp.user,
+        token: resp.token
       })
     }
   }
 
 
   renderForm = (routerProps) => {
-    if(this.state.token){
-      return <button className='logout' onClick={this.handleLogOut}>Log out</button>
-    }
+    // if(this.state.token){
+    //   return <button className='logout' onClick={this.handleLogOut}>Log out</button>
+    // }
     if(routerProps.location.pathname === "/login"){
       return <LoginForm
         formName="Login Form"
@@ -229,7 +227,6 @@ class App extends React.Component {
     // check to see this.state.current_booking.joiners has an item with the same item_id as parameter 236
     // if the joiners array has an item with the same item_id as a parameter, run increase method function
     const foundItem = this.state.current_booking.joiners.find((cartItem) => {
-      // debugger
       return cartItem.item_name === name
     })
 
@@ -367,19 +364,20 @@ class App extends React.Component {
   }
 
   renderProfile = (routerProps) => {
-    if(this.state.id){
-      console.log(this.state.token)
+    console.log(this.state.token)
+
+    if(this.state.token){
     // if(this.state.id){
       return <Profile
-        // username={this.state.username}
-        // first_name={this.state.first_name}
-        // last_name={this.state.last_name}
-        // email={this.state.email}
-        // address={this.state.address}
-        // current_booking={this.state.current_booking}
-        // past_bookings={this.state.password}
-        // id={this.state.id}
-        // token={this.state.token}
+        username={this.state.username}
+        first_name={this.state.first_name}
+        last_name={this.state.last_name}
+        email={this.state.email}
+        address={this.state.address}
+        current_booking={this.state.current_booking}
+        past_bookings={this.state.past_bookings}
+        id={this.state.id}
+        token={this.state.token}
       />
     } else {
       // this.state.history.push("/login")
@@ -387,7 +385,7 @@ class App extends React.Component {
     }
   }
 
-  renderProfileUpdate = () => {
+  renderProfileUpdate = (routerProps) => {
     console.log("hi")
     if(this.state.token){
       return <div>
@@ -399,7 +397,7 @@ class App extends React.Component {
           address={this.state.address}
           password={this.state.password}
           user_id ={this.state.id}
-          // handleUpdateSubmit={this.handleUpdateSubmit}
+          handleUpdateSubmit={this.handleUpdateSubmit}
         />
       </div> 
     } else {
@@ -407,8 +405,38 @@ class App extends React.Component {
     }
   }
 
+  handleUpdateSubmit = (userInfo) => {
+    console.log("Update form has been submitted", this)
+
+    fetch(`http://localhost:3000/users/${this.state.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "Application/json"
+      },
+      body: JSON.stringify({
+        username: userInfo.username,
+        first_name: userInfo.first_name,
+        last_name: userInfo.last_name,
+        password: userInfo.password,
+        email: userInfo.email,
+        address: userInfo.address
+      })
+    })
+    .then(res => res.json())
+    .then((userInfo) => {
+      this.setState({
+        username: userInfo.username,
+        first_name: userInfo.first_name,
+        last_name: userInfo.last_name,
+        password: userInfo.password,
+        email: userInfo.email,
+        address: userInfo.address
+      })
+    })
+    this.props.history.push("/profile")
+  }
+
   searchFunc = (routerProps) =>{
-    console.log(this.props)
     if(this.props.location.pathname === "/" || this.props.location.pathname.includes('/categories/')) {
       return <Search
       searchTerm={this.state.searchTerm}
@@ -419,7 +447,6 @@ class App extends React.Component {
   }
 
   render() {
-
     let arrayOfCategories = this.state.categories.map ((categoryPOJO)=>{
       return (
         <NavLink>
@@ -430,7 +457,6 @@ class App extends React.Component {
     })
 
     const loggedIn = localStorage.token
-    // console.log("app.js", loggedIn)
     let {items, searchTerm} = this.state
 
     let filteredArray = items.filter((item) => {
@@ -473,8 +499,8 @@ class App extends React.Component {
             // past_bookings={this.state.past_bookings}
             />
           </Route>
-          <Route path="/profile" exact render={this.renderProfile}
-            /* <Profile
+          <Route path="/profile" exact render={this.renderProfile}>
+            {/* <Profile
               username={this.state.username}
               first_name={this.state.first_name}
               last_name={this.state.last_name}
@@ -484,11 +510,9 @@ class App extends React.Component {
               past_bookings={this.state.past_bookings}
               id={this.state.id}
               token={this.state.token}
-            /> */
-          />
-          <Route path="/profile/edit">
-            <UpdateUserProfile />
+            /> */}
           </Route> 
+          <Route path="/profile/edit" exact render={this.renderProfileUpdate} />
             
         </Switch>
       </div>

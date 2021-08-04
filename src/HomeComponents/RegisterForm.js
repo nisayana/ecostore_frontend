@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 class RegisterForm extends Component {
 
   state = {
-    name: "",
+    username: "",
     password: "",
     email: ""
   }
 
   handleSubmit = (e) => {
+    debugger
     e.preventDefault()
     this.props.handleSubmit(this.state)
   }
@@ -22,17 +23,17 @@ class RegisterForm extends Component {
 
   render() {
     let {formName} = this.props
-    let {name, password, email} = this.state
+    let {username, password, email} = this.state
 
     return (
-      <div id='log-in-form'>
+      <div class='login-form'>
         <form onSubmit={this.handleSubmit}>
           {/* <h1>Sign up</h1> */}
           <div className="field">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="username">Username:</label>
           <input type="text" autoComplete="off" 
-            name="name" 
-            value={name} 
+            name="username" 
+            value={username} 
             onChange={this.handleChange}
           />
         </div>

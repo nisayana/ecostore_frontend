@@ -17,7 +17,11 @@ class SinglePastOrder extends React.Component{
     render() {
         // console.log(this.props)
         let allPastOrders = this.props.past_booking.joiners.map(past_booking => {
-        return <li>{past_booking.item_name}</li>
+        return <li>
+            <img src={past_booking.item_image} className="small-img" alt="image"/>
+            {past_booking.item_name}
+            
+            </li>
         })
         return(
             <div>
