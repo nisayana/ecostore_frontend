@@ -96,7 +96,7 @@ class App extends React.Component {
   }  
 
   handleLoginSubmit = (userInfo) => {
-    console.log("Login form has been submitted")
+    console.log("Login form has been submitted", userInfo)
     fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
@@ -114,7 +114,6 @@ class App extends React.Component {
 
 
   handleRegisterSubmit = (userInfo) => {
-    // console.log("Register form has been submitted")
     fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
@@ -163,17 +162,12 @@ class App extends React.Component {
   }
 
   renderSpecificCategory = (routerProps) => {
-    // console.log("router props", routerProps)
     let givenId = routerProps.match.params.id 
-    // console.log("givenId", givenId)
     let selectedCategory = this.state.categories.find((categoryPojo) => {
-      // console.log("categoryPojo", categoryPojo)
       return categoryPojo.id === parseInt(givenId)
     })
-    // console.log(selectedCategory)
     if (selectedCategory) {
         let filteredArray = selectedCategory.items.filter((item) => {
-          // console.log(category)
           return item.name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
         })
         return <MainContainer
@@ -194,12 +188,10 @@ class App extends React.Component {
 
 
   renderSpecificItem = (routerProps) => {
-    // console.log(routerProps)
     let givenId = routerProps.match.params.id 
     let selectedItem = this.state.items.find((itemPojo) => {
       return itemPojo.id === parseInt(givenId)
     })
-    // console.log(selectedItem)
     if (selectedItem) {
       console.log(selectedItem)
       return <ItemFullCard
@@ -212,6 +204,7 @@ class App extends React.Component {
       increaseItem = {this.increaseItem}
       decreaseItem = {this.decreaseItem}
       addReviewToState = {this.addReviewToState}
+      // Do I need reviews here???
       reviews = {this.state.reviews}
       user_id = {this.state.id}
       username={this.state.username}
@@ -228,12 +221,8 @@ class App extends React.Component {
     // if the joiners array has an item with the same item_id as a parameter, run increase method function
     const foundItem = this.state.current_booking.joiners.find((cartItem) => {
       return cartItem.item_name === name
-    })
-
-    // console.log(foundItem)
-    
+    })    
     if (foundItem) {
-      // console.log(foundItem)
       this.increaseItem(foundItem)
     } else {
     fetch("http://localhost:3000/joiners", {
@@ -250,7 +239,6 @@ class App extends React.Component {
     .then(res => res.json())
     .then(newBooking => {
       let copyOfJoinersForCart = [...this.state.current_booking.joiners, newBooking]
-      // console.log(copyOfJoinersForCart)
       let copyOfCart = {
         ...this.state.current_booking,
         joiners: copyOfJoinersForCart
@@ -299,7 +287,6 @@ class App extends React.Component {
       }
       return joiner
     })
-    // console.log("hello")
     fetch(`http://localhost:3000/joiners/${decreasedItem.id}`, {
       
       method: "PATCH",
@@ -324,13 +311,11 @@ class App extends React.Component {
 
 
   deleteMyBooking = (joiner) => {
-    // console.log(joiner)
     fetch(`http://localhost:3000/joiners/${joiner.id}`, {
       method: "DELETE"
     })
     .then(res => res.json())
     .then(deletedItem => {
-      // console.log(deletedItem)
       let updatedJoinerCart = this.state.current_booking.joiners.filter(item => {
         return item.id !== deletedItem.joiner.id
       })
@@ -364,10 +349,7 @@ class App extends React.Component {
   }
 
   renderProfile = (routerProps) => {
-    console.log(this.state.token)
-
     if(this.state.token){
-    // if(this.state.id){
       return <Profile
         username={this.state.username}
         first_name={this.state.first_name}
@@ -380,13 +362,11 @@ class App extends React.Component {
         token={this.state.token}
       />
     } else {
-      // this.state.history.push("/login")
       return <Redirect to="/login"/>
     }
   }
 
   renderProfileUpdate = (routerProps) => {
-    console.log("hi")
     if(this.state.token){
       return <div>
         <UpdateUserProfile
@@ -447,6 +427,8 @@ class App extends React.Component {
   }
 
   render() {
+    console.log("from app", this.state)
+
     let arrayOfCategories = this.state.categories.map ((categoryPOJO)=>{
       return (
         <NavLink>

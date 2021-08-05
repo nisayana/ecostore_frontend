@@ -5,13 +5,15 @@ import {Form} from 'semantic-ui-react'
 class ReviewForm extends React.Component {
 
     state = {
-        content: ""
+        content: "",
+        rating: ""
     }
 
     handleReviewForm = (evt) => {
         evt.preventDefault()
-        console.log("handle review form", this.props)
+        // console.log("handle review form", this.props)
         if (this.props.token) {
+            console.log(this.props)
             fetch(`http://localhost:3000/reviews`, {
                 method: "POST",
                 headers: {
@@ -20,7 +22,8 @@ class ReviewForm extends React.Component {
                 },
                 body: JSON.stringify({
                     item_id: this.props.item.id,
-                    content: this.state.content
+                    content: this.state.content,
+                    rating: this.state.rating
                 })
             })
             .then(res => res.json())
@@ -31,7 +34,8 @@ class ReviewForm extends React.Component {
             this.props.history.push("/login")
         }
         this.setState({
-            content: ''
+            content: "",
+            rating: ""
         })
     }
 

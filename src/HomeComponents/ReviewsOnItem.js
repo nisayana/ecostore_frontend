@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { Container } from 'semantic-ui-react'
+import { Container } from 'semantic-ui-react';
+// import StarRatingComponent from 'react-star-rating-component';
+import { List, Icon } from 'semantic-ui-react';
+// import { DeleteIcon } from 'semantic-ui-react';
+
 
 class ReviewsOnItem extends Component {
 
@@ -14,7 +18,7 @@ class ReviewsOnItem extends Component {
     })
     .then(res => res.json())
     .then((deletedObj) => {
-      console.log(deletedObj)
+      // console.log(deletedObj)
       this.props.deleteReview(deletedObj.id)
     })
   }
@@ -31,7 +35,7 @@ class ReviewsOnItem extends Component {
               <p className="review-comment-card">{content}</p>
             </div>
             <button onClick={this.handleDelete}>Delete</button>
-        </Container>
+          </Container>
         </div>
       );
     } else {
@@ -48,7 +52,6 @@ class ReviewsOnItem extends Component {
       );
     }
   }
-
 }
 
 export default ReviewsOnItem;

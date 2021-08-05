@@ -12,11 +12,12 @@ class Profile extends React.Component {
     }
 
     handleUpdateInfo = () => {
-        console.log("update info")
+        console.log("handle update info", this.props)
         this.props.history.push("/profile/edit")
     }
 
     render() {
+        console.log("from profile", this.props)
         return(
             <div>
                 {/* <h1>Welcome!</h1> */}

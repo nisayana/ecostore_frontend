@@ -9,7 +9,6 @@ class RegisterForm extends Component {
   }
 
   handleSubmit = (e) => {
-    debugger
     e.preventDefault()
     this.props.handleSubmit(this.state)
   }
