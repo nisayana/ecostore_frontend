@@ -2,7 +2,7 @@ import React from 'react';
 import NotFound from './NotFound';
 
 import About from './HomeComponents/About';
-import Checkout from './HomeComponents/Checkout';
+import Cart from './HomeComponents/Cart';
 import HomeContainer from './HomeComponents/HomeContainer';
 import LoginForm from './HomeComponents/LoginForm';
 import NavBar from './HomeComponents/NavBar';
@@ -17,8 +17,11 @@ import MainContainer from './ItemComponents/MainContainer';
 
 import {Switch, Route, withRouter, Redirect, NavLink} from 'react-router-dom';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import ItemFullCard from './ItemComponents/ItemFullCard';
 
+import ShippingForm from './HomeComponents/ShippingForm';
 
 class App extends React.Component {
 
@@ -31,11 +34,14 @@ class App extends React.Component {
     first_name: "",
     last_name: "",
     address: "",
-    current_booking: {
+    city: "",
+    state: "",
+    zip: "",
+    current_order: {
       id: 0,
       joiners: []
     },
-    past_bookings: [],
+    past_orders: [],
     searchTerm: ""
   }
 
@@ -84,11 +90,11 @@ class App extends React.Component {
       address: "",
       email: "",
       token: "",
-      current_booking: {
+      current_order: {
         id: 0,
         joiners: []
       },
-      past_bookings: []
+      past_orders: []
     })
     localStorage.clear();
     // this.props.history("/");
@@ -174,8 +180,8 @@ class App extends React.Component {
         items={filteredArray} 
         category = {selectedCategory} 
         token = {this.state.token}
-        past_bookings = {this.state.past_bookings}
-        current_booking = {this.state.current_booking}
+        past_orders = {this.state.past_orders}
+        current_order = {this.state.current_order}
         addToMyBookings = {this.addToMyBookings}
         deleteMyBooking = {this.deleteMyBooking}
         increaseItem = {this.increaseItem}
@@ -197,8 +203,8 @@ class App extends React.Component {
       return <ItemFullCard
       selectedItem={selectedItem}
       token = {this.state.token}
-      past_bookings = {this.state.past_bookings}
-      current_booking = {this.state.current_booking}
+      past_orders = {this.state.past_orders}
+      current_order = {this.state.current_order}
       addToMyBookings = {this.addToMyBookings}
       deleteMyBooking = {this.deleteMyBooking}
       increaseItem = {this.increaseItem}
@@ -216,10 +222,10 @@ class App extends React.Component {
 
   addToMyBookings = (item_id, name) => {
     // console.log(name)
-    // console.log(this.state.current_booking.joiners)
-    // check to see this.state.current_booking.joiners has an item with the same item_id as parameter 236
+    // console.log(this.state.current_order.joiners)
+    // check to see this.state.current_order.joiners has an item with the same item_id as parameter 236
     // if the joiners array has an item with the same item_id as a parameter, run increase method function
-    const foundItem = this.state.current_booking.joiners.find((cartItem) => {
+    const foundItem = this.state.current_order.joiners.find((cartItem) => {
       return cartItem.item_name === name
     })    
     if (foundItem) {
@@ -232,19 +238,19 @@ class App extends React.Component {
       },
       body: JSON.stringify({
         item_id: item_id,
-        order_id: this.state.current_booking.id,
+        order_id: this.state.current_order.id,
         quantity: 1
       })
     })
     .then(res => res.json())
     .then(newBooking => {
-      let copyOfJoinersForCart = [...this.state.current_booking.joiners, newBooking]
+      let copyOfJoinersForCart = [...this.state.current_order.joiners, newBooking]
       let copyOfCart = {
-        ...this.state.current_booking,
+        ...this.state.current_order,
         joiners: copyOfJoinersForCart
       }  
       this.setState({
-        current_booking: copyOfCart
+        current_order: copyOfCart
         })
       })
     }
@@ -253,7 +259,7 @@ class App extends React.Component {
   increaseItem = (increasedItem) => {
     console.log(increasedItem)
     if (localStorage.token) {
-    let increasedJoinerItem = this.state.current_booking.joiners.map(joiner => {
+    let increasedJoinerItem = this.state.current_order.joiners.map(joiner => {
       if (increasedItem.id === joiner.id) {
         joiner.quantity++
       }
@@ -281,7 +287,7 @@ class App extends React.Component {
   }
 
   decreaseItem = (decreasedItem) => {
-    let decreasedJoinerItem = this.state.current_booking.joiners.map(joiner => {
+    let decreasedJoinerItem = this.state.current_order.joiners.map(joiner => {
       if (decreasedItem.id === joiner.id) {
         joiner.quantity--
       }
@@ -306,7 +312,7 @@ class App extends React.Component {
   }
 
   get itemsAmount() {
-    return this.state.current_booking.joiners.reduce((acc, prev) => prev.quantity + acc, 0)
+    return this.state.current_order.joiners.reduce((acc, prev) => prev.quantity + acc, 0)
   }
 
 
@@ -316,22 +322,22 @@ class App extends React.Component {
     })
     .then(res => res.json())
     .then(deletedItem => {
-      let updatedJoinerCart = this.state.current_booking.joiners.filter(item => {
+      let updatedJoinerCart = this.state.current_order.joiners.filter(item => {
         return item.id !== deletedItem.joiner.id
       })
       let copyOfCart = {
-        ...this.state.current_booking,
+        ...this.state.current_order,
         joiners: updatedJoinerCart
       }  
       console.log(updatedJoinerCart)
       this.setState({
-        current_booking: copyOfCart
+        current_order: copyOfCart
       })
     })
   }
 
   currentCartIntoPastOrder = () => {
-    fetch(`http://localhost:3000/orders/${this.state.current_booking.id}/transform`, {
+    fetch(`http://localhost:3000/orders/${this.state.current_order.id}/transform`, {
       method: "PATCH",
       headers: {
         "Authorization": this.state.token
@@ -340,10 +346,10 @@ class App extends React.Component {
       .then(res => res.json())
       .then((resp) => {
         console.log(resp)
-        let copyOfPastOrders = [...this.state.past_bookings, resp.transformed_cart]
+        let copyOfPastOrders = [...this.state.past_orders, resp.transformed_cart]
         this.setState({
-          current_booking: resp.current_cart,
-          past_bookings: copyOfPastOrders
+          current_order: resp.current_cart,
+          past_orders: copyOfPastOrders
         })
       })
   }
@@ -356,8 +362,11 @@ class App extends React.Component {
         last_name={this.state.last_name}
         email={this.state.email}
         address={this.state.address}
-        current_booking={this.state.current_booking}
-        past_bookings={this.state.past_bookings}
+        city={this.state.city}
+        state={this.state.state}
+        zip={this.state.zip}
+        current_order={this.state.current_order}
+        past_orders={this.state.past_orders}
         id={this.state.id}
         token={this.state.token}
       />
@@ -375,6 +384,9 @@ class App extends React.Component {
           last_name={this.state.last_name}
           email={this.state.email}
           address={this.state.address}
+          city={this.state.city}
+          state={this.state.state}
+          zip={this.state.zip}
           password={this.state.password}
           user_id ={this.state.id}
           handleUpdateSubmit={this.handleUpdateSubmit}
@@ -459,8 +471,8 @@ class App extends React.Component {
           <Route path="/" exact render={() => < HomeContainer
           items={filteredArray}
           token = {this.state.token}
-          past_bookings = {this.state.past_bookings}
-          current_booking = {this.state.current_booking}
+          past_orders = {this.state.past_orders}
+          current_order = {this.state.current_order}
           addToMyBookings = {this.addToMyBookings}
           deleteMyBooking = {this.deleteMyBooking}
           increaseItem = {this.increaseItem}
@@ -471,29 +483,18 @@ class App extends React.Component {
           <Route path='/about' component={About}/>
           <Route path='/login' exact render={this.renderForm}/>
           <Route path="/register" exact render={this.renderForm}/>
-          <Route path="/checkout">
-            <Checkout
+          <Route path="/cart">
+            <Cart
             currentCartIntoPastOrder={this.currentCartIntoPastOrder}
-            current_booking={this.state.current_booking}
+            current_order={this.state.current_order}
             increaseItem={this.increaseItem}
             decreaseItem={this.decreaseItem}
             deleteMyBooking={this.deleteMyBooking}
-            // past_bookings={this.state.past_bookings}
+            // past_orders={this.state.past_orders}
             />
           </Route>
-          <Route path="/profile" exact render={this.renderProfile}>
-            {/* <Profile
-              username={this.state.username}
-              first_name={this.state.first_name}
-              last_name={this.state.last_name}
-              email={this.state.email}
-              address={this.state.address}
-              current_booking={this.state.current_booking}
-              past_bookings={this.state.past_bookings}
-              id={this.state.id}
-              token={this.state.token}
-            /> */}
-          </Route> 
+          <Route path="/shipping" render component={ShippingForm}/>
+          <Route path="/profile" exact render={this.renderProfile} />
           <Route path="/profile/edit" exact render={this.renderProfileUpdate} />
             
         </Switch>

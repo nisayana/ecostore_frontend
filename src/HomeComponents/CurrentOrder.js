@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Grid, Image, Header, Button } from "semantic-ui-react";
-
+import ShippingForm from './ShippingForm'
 
 const CurrentOrder = (props) => {
 
   const history = useHistory();
   
-  const handleCheckout = () => {
-    history.push("/checkout")
+  const handleShipping = () => {
+    history.push("/shipping")
+    // history.push("/checkout")
   }
 
   const deleteItem = (joiner) => {
@@ -26,7 +27,7 @@ const CurrentOrder = (props) => {
     props.decreaseItem(joiner)
   }
 
-  let arrOfComps = props.current_booking.joiners.map(joiner => {
+  let arrOfComps = props.current_order.joiners.map(joiner => {
     // console.log(joiner)
     return (<div className="shopping-cart cart">
       <img src={joiner.item_image} alt="image" className="small-img" />
@@ -48,7 +49,7 @@ const CurrentOrder = (props) => {
       </ul>
 
       {/* <h3>Total Price: $<span id="total">{totalSum}</span></h3> */}
-      <button onClick={handleCheckout} className="checkout-btn"></button>
+      <button onClick={handleShipping} className="checkout-btn">Shipping</button>
     </div>
   )
 }

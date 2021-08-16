@@ -4,14 +4,14 @@ import CurrentOrder from './CurrentOrder'
 import { Grid, Image, Header, Button } from "semantic-ui-react";
 
 
-const Checkout = (props) => {
+const Cart = (props) => {
   let totalSum = 0
-  if (props.current_booking.joiners.length > 0) {
-    totalSum = props.current_booking.joiners.reduce((agg, joiner) => {
+  if (props.current_order.joiners.length > 0) {
+    totalSum = props.current_order.joiners.reduce((agg, joiner) => {
       return agg + joiner.item_price*joiner.quantity}, 0)
   }
 
-    console.log("cart", props.current_booking.joiners)
+    console.log("cart", props.current_order.joiners)
 
 const handleClick = (e) => {
     // console.log("hello")
@@ -20,9 +20,9 @@ const handleClick = (e) => {
   
 
 const arrOfComps = () => {
-  console.log("from Checkout", props)
-  if (props.current_booking.joiners){
-    return props.current_booking.joiners.map(joiner => <p key={joiner.id}>{joiner.item_name}</p>)
+  console.log("from Cart", props)
+  if (props.current_order.joiners){
+    return props.current_order.joiners.map(joiner => <p key={joiner.id}>{joiner.item_name}</p>)
   }
 }
 
@@ -35,7 +35,7 @@ const arrOfComps = () => {
         :
         // arrOfComps()
         <CurrentOrder 
-          current_booking={props.current_booking}
+          current_order={props.current_order}
           increaseItem={props.increaseItem}
           decreaseItem={props.decreaseItem}
           deleteMyBooking={props.deleteMyBooking}
@@ -45,12 +45,12 @@ const arrOfComps = () => {
 
       <h3>Your Total: $<span id="total">{totalSum}</span></h3>
 
-      <StripeComponent
+      {/* <StripeComponent
         price={totalSum}
         sentToPastOrders={handleClick}
-      />
+      /> */}
     </div>
   )
 }
 
-export default Checkout;
+export default Cart;

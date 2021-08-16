@@ -26,12 +26,15 @@ class Profile extends React.Component {
                     <p> {this.props.first_name} {this.props.last_name}</p>
                     <p><strong>Email: </strong>{this.props.email}</p>
                     <p><strong>Address:</strong> {this.props.address}</p>
+                    <p><strong>City:</strong> {this.props.city}</p>
+                    <p><strong>State:</strong> {this.props.state}</p>
+                    <p><strong>Zip code:</strong> {this.props.zip}</p>
                     <button onClick={this.handleUpdateInfo}>Update Information</button>
                 </div>
                 <div className="order-list">
                     {/* <h1>hello</h1> */}
-                    {/* <CurrentOrder currentOrder={this.props.current_booking}/> */}
-                    <PastOrders past_bookings={this.props.past_bookings} />
+                    {/* <CurrentOrder currentOrder={this.props.current_order}/> */}
+                    <PastOrders past_orders={this.props.past_orders} />
                 </div>
             </div>
         )

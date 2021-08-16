@@ -18,8 +18,8 @@ class HomeContainer extends React.Component {
         <MainContainer 
         items={this.props.items} 
         token = {this.props.token}
-        past_bookings = {this.props.past_bookings}
-        current_booking = {this.props.current_booking}
+        past_orders = {this.props.past_orders}
+        current_order = {this.props.current_order}
         addToMyBookings = {this.props.addToMyBookings}
         deleteMyBooking = {this.props.deleteMyBooking}
         increaseItem = {this.props.increaseItem}

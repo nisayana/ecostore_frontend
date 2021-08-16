@@ -5,8 +5,8 @@ class PastOrder extends React.Component{
  
   render(){
     // console.log("past orders", this.props)
-    let arrayOfComps = this.props.past_bookings.map(past_booking => {
-      return <SinglePastOrder key={past_booking.id} past_booking={past_booking} />
+    let arrayOfComps = this.props.past_orders.map(past_order => {
+      return <SinglePastOrder key={past_order.id} past_order={past_order} />
     })
   
     return (

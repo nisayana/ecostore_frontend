@@ -16,16 +16,16 @@ class SinglePastOrder extends React.Component{
 
     render() {
         // console.log(this.props)
-        let allPastOrders = this.props.past_booking.joiners.map(past_booking => {
+        let allPastOrders = this.props.past_order.joiners.map(past_order => {
         return <li>
-            <img src={past_booking.item_image} className="small-img" alt="image"/>
-            {past_booking.item_name}
+            <img src={past_order.item_image} className="small-img" alt="image"/>
+            {past_order.item_name}
             
             </li>
         })
         return(
             <div>
-                <p onClick={this.handleClick}>{this.props.past_booking.item_name}</p>
+                <p onClick={this.handleClick}>{this.props.past_order.item_name}</p>
                 {this.state.clicked
                 ?
                 <ul>

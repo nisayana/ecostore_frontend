@@ -11,6 +11,9 @@ class UpdateUserProfile extends React.Component {
         password: this.props.password,
         email: this.props.email,
         address: this.props.address,
+        city: this.props.city,
+        state: this.props.state,
+        zip: this.props.zip,
         id: this.props.user_id
       }
     
@@ -29,7 +32,7 @@ class UpdateUserProfile extends React.Component {
     
     render(){
 
-        let {username, password, email, address, first_name, last_name} = this.state
+        let {username, password, email, address, city, state, zip, first_name, last_name} = this.state
 
         return (
 
@@ -82,9 +85,36 @@ class UpdateUserProfile extends React.Component {
                 id='form-input'
                 control={TextArea}
                 label='Address'
-                placeholder='street, city, state, zipcode'
+                placeholder='address'
                 name="address" 
                 value={address} 
+                onChange={this.handleChange}
+              />
+              <Form.Field
+                id='form-input'
+                control={TextArea}
+                label='City'
+                placeholder='city'
+                name="city" 
+                value={city} 
+                onChange={this.handleChange}
+              />
+              <Form.Field
+                id='form-input'
+                control={TextArea}
+                label='State'
+                placeholder='state'
+                name="state" 
+                value={state} 
+                onChange={this.handleChange}
+              />
+              <Form.Field
+                id='form-input'
+                control={TextArea}
+                label='Zip code'
+                placeholder='zip code'
+                name="zip" 
+                value={zip} 
                 onChange={this.handleChange}
               />
               <Form.Field

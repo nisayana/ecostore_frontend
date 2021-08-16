@@ -27,7 +27,7 @@ const NavBar = ({ loggedIn, handleLogOut, username, arrayOfCategories, itemsAmou
 
         <li>
           <div >
-            <Link to={"/checkout"}>My cart ({itemsAmount})</Link>
+            <Link to={"/cart"}>My cart ({itemsAmount})</Link>
           </div>
         </li>
 
