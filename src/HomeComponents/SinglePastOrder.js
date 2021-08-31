@@ -2,30 +2,31 @@ import React from 'react';
 
 class SinglePastOrder extends React.Component{
 
-    state = {
-        clicked: true
-    }
+    // state = {
+    //     clicked: true
+    // }
 
-    handleClick = (evt) => {
-        this.setState(prevState => {
-            return {
-                clicked: !prevState.clicked
-            }
-        })
-    }
+    // handleClick = (evt) => {
+    //     this.setState(prevState => {
+    //         return {
+    //             clicked: !prevState.clicked
+    //         }
+    //     })
+    // }
 
     render() {
         // console.log(this.props)
         let allPastOrders = this.props.past_order.joiners.map(past_order => {
-        return <li>
+        return <div id="ordersDiv">
             <img src={past_order.item_image} className="small-img" alt="image"/>
             {past_order.item_name}
-            
-            </li>
+            {/* {past_order.item_quantity} */}
+            </div>
         })
         return(
             <div>
-                <p onClick={this.handleClick}>{this.props.past_order.item_name}</p>
+                {allPastOrders}
+                {/* <p onClick={this.handleClick}>{this.props.past_order.item_name}</p>
                 {this.state.clicked
                 ?
                 <ul>
@@ -33,7 +34,7 @@ class SinglePastOrder extends React.Component{
                 </ul>
                 :
                 null
-                }
+                } */}
             </div>
         )
     }

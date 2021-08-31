@@ -8,12 +8,14 @@ class PastOrder extends React.Component{
     let arrayOfComps = this.props.past_orders.map(past_order => {
       return <SinglePastOrder key={past_order.id} past_order={past_order} />
     })
+
+    console.log(arrayOfComps)
   
     return (
       <div className="custom">
         <h1>Orders:</h1>
   
-        <div id="ordersDiv">
+        <div>
           {arrayOfComps}
         </div>
       </div>

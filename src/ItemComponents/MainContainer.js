@@ -11,9 +11,9 @@ function MainContainer(props){
             <ItemContainer 
             items = {props.items}
             token = {props.token}
-            passt_orders = {props.passt_orders}
+            past_orders = {props.past_orders}
             current_order = {props.current_order}
-            addToMyBookings = {props.addToMyBookings}
+            addToMyOrders = {props.addToMyOrders}
 
             />
         </div>

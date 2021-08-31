@@ -50,7 +50,7 @@ class ItemFullCard extends React.Component {
     }
 
     handleAddToACart = () => {
-        this.props.addToMyBookings(this.props.selectedItem.id)
+        this.props.addToMyOrders(this.props.selectedItem.id)
     }
 
 

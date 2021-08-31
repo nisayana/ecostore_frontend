@@ -14,7 +14,7 @@ const CurrentOrder = (props) => {
 
   const deleteItem = (joiner) => {
     console.log("hello", joiner)
-    props.deleteMyBooking(joiner)
+    props.deleteMyOrder(joiner)
   }
 
   const handleIncreaseItem = (joiner) => {

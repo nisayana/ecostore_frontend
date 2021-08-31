@@ -38,7 +38,7 @@ const arrOfComps = () => {
           current_order={props.current_order}
           increaseItem={props.increaseItem}
           decreaseItem={props.decreaseItem}
-          deleteMyBooking={props.deleteMyBooking}
+          deleteMyOrder={props.deleteMyOrder}
         />
         }
       </ul>

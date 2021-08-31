@@ -59,7 +59,7 @@ class App extends React.Component {
       arrayOfCategories.map(singleCategory => {
         arrayOfItems = [...singleCategory.items, ...arrayOfItems]
       })
-      console.log(arrayOfItems)
+      // console.log(arrayOfItems)
       this.setState({
         categories: arrayOfCategories,
         items: arrayOfItems
@@ -81,7 +81,7 @@ class App extends React.Component {
   }
 
   handleLogOut = () => {
-    // localStorage.deleteMyBooking("token")
+    // localStorage.deleteMyOrder("token")
     this.setState({
       id: 0,
       username: "",
@@ -141,6 +141,8 @@ class App extends React.Component {
       console.error(resp.error)
     } else {
       localStorage.token = resp.token
+      // if there are items on the cart 
+      // fetch()
       this.setState({
         ...resp.user,
         token: resp.token
@@ -182,8 +184,8 @@ class App extends React.Component {
         token = {this.state.token}
         past_orders = {this.state.past_orders}
         current_order = {this.state.current_order}
-        addToMyBookings = {this.addToMyBookings}
-        deleteMyBooking = {this.deleteMyBooking}
+        addToMyOrders = {this.addToMyOrders}
+        deleteMyOrder = {this.deleteMyOrder}
         increaseItem = {this.increaseItem}
         decreaseItem = {this.decreaseItem}
         />
@@ -199,14 +201,14 @@ class App extends React.Component {
       return itemPojo.id === parseInt(givenId)
     })
     if (selectedItem) {
-      console.log(selectedItem)
+      // console.log(selectedItem)
       return <ItemFullCard
       selectedItem={selectedItem}
       token = {this.state.token}
       past_orders = {this.state.past_orders}
       current_order = {this.state.current_order}
-      addToMyBookings = {this.addToMyBookings}
-      deleteMyBooking = {this.deleteMyBooking}
+      addToMyOrders = {this.addToMyOrders}
+      deleteMyOrder = {this.deleteMyOrder}
       increaseItem = {this.increaseItem}
       decreaseItem = {this.decreaseItem}
       addReviewToState = {this.addReviewToState}
@@ -220,11 +222,12 @@ class App extends React.Component {
     }
   }
 
-  addToMyBookings = (item_id, name) => {
+  addToMyOrders = (item_id, name) => {
     // console.log(name)
     // console.log(this.state.current_order.joiners)
     // check to see this.state.current_order.joiners has an item with the same item_id as parameter 236
     // if the joiners array has an item with the same item_id as a parameter, run increase method function
+    if (localStorage.token) {
     const foundItem = this.state.current_order.joiners.find((cartItem) => {
       return cartItem.item_name === name
     })    
@@ -243,8 +246,8 @@ class App extends React.Component {
       })
     })
     .then(res => res.json())
-    .then(newBooking => {
-      let copyOfJoinersForCart = [...this.state.current_order.joiners, newBooking]
+    .then(newOrder => {
+      let copyOfJoinersForCart = [...this.state.current_order.joiners, newOrder]
       let copyOfCart = {
         ...this.state.current_order,
         joiners: copyOfJoinersForCart
@@ -253,6 +256,9 @@ class App extends React.Component {
         current_order: copyOfCart
         })
       })
+    }
+    } else {
+      alert("Log in first")
     }
   }
 
@@ -316,7 +322,7 @@ class App extends React.Component {
   }
 
 
-  deleteMyBooking = (joiner) => {
+  deleteMyOrder = (joiner) => {
     fetch(`http://localhost:3000/joiners/${joiner.id}`, {
       method: "DELETE"
     })
@@ -473,8 +479,8 @@ class App extends React.Component {
           token = {this.state.token}
           past_orders = {this.state.past_orders}
           current_order = {this.state.current_order}
-          addToMyBookings = {this.addToMyBookings}
-          deleteMyBooking = {this.deleteMyBooking}
+          addToMyOrders = {this.addToMyOrders}
+          deleteMyOrder = {this.deleteMyOrder}
           increaseItem = {this.increaseItem}
           decreaseItem = {this.decreaseItem}
           />} />
@@ -489,11 +495,11 @@ class App extends React.Component {
             current_order={this.state.current_order}
             increaseItem={this.increaseItem}
             decreaseItem={this.decreaseItem}
-            deleteMyBooking={this.deleteMyBooking}
+            deleteMyOrder={this.deleteMyOrder}
             // past_orders={this.state.past_orders}
             />
           </Route>
-          <Route path="/shipping" render component={ShippingForm}/>
+          <Route path="/shipping" component={ShippingForm}/>
           <Route path="/profile" exact render={this.renderProfile} />
           <Route path="/profile/edit" exact render={this.renderProfileUpdate} />
             

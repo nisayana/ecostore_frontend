@@ -10,14 +10,14 @@ class ItemContainer extends React.Component {
         //     return <ItemCard
         //         key={item.id}
         //         item={item} 
-        //         addToMyBookings={this.props.addToMyBookings}
+        //         addToMyOrders={this.props.addToMyOrders}
         //     />
         // })
         let item = this.props.items.map(singleItem => {
             return <ItemCard
                 key={singleItem.id} 
                 singleItem={singleItem}
-                addToMyBookings={this.props.addToMyBookings}
+                addToMyOrders={this.props.addToMyOrders}
             />
         })
 
