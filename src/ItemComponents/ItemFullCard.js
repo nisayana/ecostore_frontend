@@ -55,8 +55,6 @@ class ItemFullCard extends React.Component {
 
 
     render() {
-        console.log("from full card", this.props)
-
         let reviews = this.state.reviews.map(reviewPojo => {
             return <ReviewsOnItem
                 key={reviewPojo.id}

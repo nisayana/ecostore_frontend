@@ -1,9 +1,3 @@
-/* body {
-  margin: 0;
-  font-family: monospace;
-  background-color: rgb(13, 34, 34);
-} */
-
 #header-home {
   margin-top: 10px;
   display: flex;
@@ -13,33 +7,16 @@
   padding: 1rem;
 }
 
-#homepage {
-  font-size: large;
-  color: black;
-}
-
 h1#header-home {
   /* padding-top: 1em; */
   /* padding: auto; */
   font-size: 40px;
 }
 
-/* #categories-collection {
-  width: 100%;
-  column-count: 2;
-  /* justify-content: space-evenly; */
-/* } */ 
-
-/* .category-card {
-  text-align: center;
-  border: grey solid 1px;
-  padding: 1rem;
-  width: 20rem;
-  height: 30rem;
-  display: inline-grid;
-  margin: 1rem 2rem;
-  box-shadow: 3px 4px #e9dfe0
-} */
+#homepage {
+  font-size: large;
+  color: black;
+}
 
 .category-image {
   justify-self: center;
@@ -70,10 +47,7 @@ button:hover {
 }
 
 .container {
-  margin: 10px 20px 10px 20px;
-  /* padding: 1rem;
-  width: stretch;
-  height: auto; */
+
 }
 
 .submit {
@@ -106,7 +80,6 @@ button:hover {
   grid-template-columns: repeat(5, 1fr);
   justify-content: center;
   align-items: center;
-  /* grid-gap: 100px; */
 }
 
 .small-img {
@@ -119,6 +92,8 @@ button:hover {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  /* margin-left: 1rem; */
+  width: 100%;
 }
 
 .item-card {
@@ -167,38 +142,6 @@ button:hover {
   width: 400px;
   background: #f1f1f1;
 }
-
-/* #search input[type=text]{
-  border-top:thin solid  #e5e5e5;
-  border-right:thin solid #e5e5e5;
-  border-bottom:0;
-  border-left:thin solid  #e5e5e5;
-  box-shadow:0px 1px 1px 1px #e5e5e5;
-  float:left;
-  height:17px;
-  margin:.8em 0 0 .5em; 
-  outline:0;
-  padding:.4em 0 .4em .6em; 
-  width:183px; 
-  justify-content: 0;
-} */
-/*  
-#button-holder{
-  background-color:#f1f1f1;
-  border-top:thin solid #e5e5e5;
-  box-shadow:1px 1px 1px 1px #e5e5e5;
-  cursor:pointer;
-  float:left;
-  height:27px;
-  margin:11px 0 0 0;
-  text-align:center;
-  width:50px;
-} */
- 
-/* #button-holder img{
-  margin:4px;
-  width:20px; 
-} */
 
 .review-form {
   margin-top: 1rem;
@@ -276,7 +219,6 @@ button:hover {
 }
 
 .slogan {
-  /* font-size: large; */
   position: absolute;
   top: 40%;
   left: 50%;

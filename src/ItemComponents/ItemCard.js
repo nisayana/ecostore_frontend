@@ -16,9 +16,7 @@ class ItemCard extends React.Component {
     render() {
 
         let {name, image, overview, price, id} = this.props.singleItem
-        // console.log(this.props)
         return(
-            // <h1>hello</h1>
             <div className="item-card">
                 <Link to={`/items/${id}`}>
                 <img src={image} alt={image} onClick={this.handleFullItemCont} className="item-image"/>

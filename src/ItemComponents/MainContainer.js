@@ -4,17 +4,14 @@ import CurrentOrder from '../HomeComponents/CurrentOrder';
 import ItemContainer from './ItemContainer';
 
 function MainContainer(props){
-    // console.log("from main", props)
     return(
-        <div className="container">
-            
+        <div className="container">      
             <ItemContainer 
             items = {props.items}
             token = {props.token}
             past_orders = {props.past_orders}
             current_order = {props.current_order}
             addToMyOrders = {props.addToMyOrders}
-
             />
         </div>
     )
