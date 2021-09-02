@@ -31,13 +31,14 @@ const CurrentOrder = (props) => {
     // console.log(joiner)
     return (<div className="shopping-cart cart">
       <img src={joiner.item_image} alt="image" className="small-img" />
-      <h3 key={joiner.id}>{joiner.item_name}</h3>
+      {/* <h3 key={joiner.id}>{joiner.item_name}</h3> */}
+      <p key={joiner.id}>{joiner.item_name}</p>
       <p>{joiner.item_price} $</p>
       <p> Quantity: {joiner.quantity}
       <button onClick={() => handleDecreaseItem(joiner)}>-</button>
       <button onClick={() => handleIncreaseItem(joiner)}>+</button>
       </p>
-      <button onClick={() => deleteItem(joiner)}>delete</button>
+      <button className="cart-button" onClick={() => deleteItem(joiner)}>delete</button>
     </div>)
   })
 

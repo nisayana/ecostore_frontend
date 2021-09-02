@@ -33,6 +33,15 @@ button {
   color: whitesmoke;
   font-size: 14px;
   justify-self: center;
+  align-self: center;
+  /* margin-bottom: 10px; */
+}
+
+.cart-button {
+  position: relative;
+  background-color: #blue;
+  border: none;
+  border-radius: 5px;
 }
 
 .buttonContainer {
@@ -44,10 +53,6 @@ button:hover {
   background-color: whitesmoke;
   border: #bedaf5 solid 1px;
   color: #bedaf5;
-}
-
-.container {
-
 }
 
 .submit {
@@ -80,6 +85,7 @@ button:hover {
   grid-template-columns: repeat(5, 1fr);
   justify-content: center;
   align-items: center;
+  padding-bottom: 2em;
 }
 
 .small-img {
@@ -94,6 +100,8 @@ button:hover {
   grid-template-columns: repeat(4, 1fr);
   /* margin-left: 1rem; */
   width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .item-card {
@@ -119,7 +127,7 @@ button:hover {
 
 .item-fullcard {
   display: flex;
-  margin-left: 10%;
+  /* margin-left: 10%; */
   width: 80%;
   align-items: center;
   padding: 10px; 
@@ -197,7 +205,7 @@ button:hover {
   border: none;
   margin: 10px;
 }
-/*This should make them change their color when they are hovered*/
+
 .signin-button:hover {
   background: #b6afb7;
   color: black;
@@ -243,6 +251,6 @@ button:hover {
 #ordersDiv {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  width: 100;
+  width: 100%;
 
 }

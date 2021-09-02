@@ -5,7 +5,7 @@ import ItemContainer from './ItemContainer';
 
 function MainContainer(props){
     return(
-        <div className="container">      
+        <div>      
             <ItemContainer 
             items = {props.items}
             token = {props.token}
