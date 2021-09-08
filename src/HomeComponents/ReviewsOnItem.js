@@ -41,10 +41,10 @@ class ReviewsOnItem extends Component {
     } else {
       return (
         <div>
-          <Container className="review-container">
-            <p className="review-username">{user_name}</p>
-            <div className="comment-card">
-              <p className="review-comment-card">{content}</p>
+          <Container>
+            <p >{user_name}</p>
+            <div>
+              <p>{content}</p>
             </div>
             {/* <button onClick={this.handleDelete}>Delete</button> */}
         </Container>

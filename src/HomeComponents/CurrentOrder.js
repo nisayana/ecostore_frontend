@@ -5,6 +5,12 @@ import ShippingForm from './ShippingForm'
 
 const CurrentOrder = (props) => {
 
+  let totalSum = 0
+  if (props.current_order.joiners.length > 0) {
+    totalSum = props.current_order.joiners.reduce((agg, joiner) => {
+      return agg + joiner.item_price*joiner.quantity}, 0)
+  }
+
   const history = useHistory();
   
   const handleShipping = () => {
@@ -49,8 +55,8 @@ const CurrentOrder = (props) => {
         {arrOfComps}
       </ul>
 
-      {/* <h3>Total Price: $<span id="total">{totalSum}</span></h3> */}
-      <button onClick={handleShipping} className="checkout-btn">Shipping</button>
+      <h3>Order Total: $<span id="total">{totalSum}</span></h3>
+      <button onClick={handleShipping} className="checkout-btn">Shipping </button>
     </div>
   )
 }

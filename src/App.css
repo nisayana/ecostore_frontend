@@ -38,10 +38,16 @@ button {
 }
 
 .cart-button {
-  position: relative;
-  background-color: #blue;
-  border: none;
-  border-radius: 5px;
+    position: relative;
+    background-color: #131518;
+    border: none;
+    border-radius: 5px;
+    width: max-content;
+    color: whitesmoke;
+    font-size: 14px;
+    justify-self: center;
+    align-self: center;
+    margin-bottom: 10px;
 }
 
 .buttonContainer {
@@ -127,10 +133,11 @@ button:hover {
 
 .item-fullcard {
   display: flex;
-  /* margin-left: 10%; */
+  margin-top: 15px;
   width: 80%;
   align-items: center;
   padding: 10px; 
+  padding-left: 150px;
   justify-content: center;
 }
 
@@ -155,12 +162,15 @@ button:hover {
   margin-top: 1rem;
   margin-left: auto;
   margin-right: auto;
-  width: 60%;
+  width: 40%;
 }
 
 #createReviewButton {
   display: flex;  
-  justify-content: center;  
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  margin-left: 40%;
   position: relative;
   background-color: #131518;
   border: none;

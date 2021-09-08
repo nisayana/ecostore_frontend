@@ -31,7 +31,7 @@ const arrOfComps = () => {
       <ul className="order-list">
         { totalSum === 0
         ?
-        <p>Your cart is empty</p>
+        <h3>Your cart is empty</h3>
         :
         // arrOfComps()
         <CurrentOrder 
@@ -43,7 +43,7 @@ const arrOfComps = () => {
         }
       </ul>
 
-      <h3>Your Total: $<span id="total">{totalSum}</span></h3>
+      {/* <h3>Your Total: $<span id="total">{totalSum}</span></h3> */}
 
       {/* <StripeComponent
         price={totalSum}
