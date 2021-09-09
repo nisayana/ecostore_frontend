@@ -11,7 +11,7 @@ const Cart = (props) => {
       return agg + joiner.item_price*joiner.quantity}, 0)
   }
 
-    console.log("cart", props.current_order.joiners)
+    // console.log("cart", props.current_order.joiners)
 
 const handleClick = (e) => {
     // console.log("hello")
@@ -20,7 +20,7 @@ const handleClick = (e) => {
   
 
 const arrOfComps = () => {
-  console.log("from Cart", props)
+  // console.log("from Cart", props)
   if (props.current_order.joiners){
     return props.current_order.joiners.map(joiner => <p key={joiner.id}>{joiner.item_name}</p>)
   }
@@ -45,10 +45,10 @@ const arrOfComps = () => {
 
       {/* <h3>Your Total: $<span id="total">{totalSum}</span></h3> */}
 
-      {/* <StripeComponent
+      <StripeComponent
         price={totalSum}
         sentToPastOrders={handleClick}
-      /> */}
+      />
     </div>
   )
 }

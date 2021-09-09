@@ -13,7 +13,7 @@ const CurrentOrder = (props) => {
 
   const history = useHistory();
   
-  const handleShipping = () => {
+  const handleCheckout = () => {
     history.push("/shipping")
     // history.push("/checkout")
   }
@@ -56,7 +56,7 @@ const CurrentOrder = (props) => {
       </ul>
 
       <h3>Order Total: $<span id="total">{totalSum}</span></h3>
-      <button onClick={handleShipping} className="checkout-btn">Shipping </button>
+      <button onClick={handleCheckout} className="checkout-btn">Proceed To Checkout</button>
     </div>
   )
 }

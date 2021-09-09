@@ -6,10 +6,6 @@ import { Icon, Button } from 'semantic-ui-react'
 
 
 class Profile extends React.Component {
- 
-    handleCheckout = () => {
-        this.props.handleLogOut()
-    }
 
     handleUpdateInfo = () => {
         console.log("handle update info", this.props)
