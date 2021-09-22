@@ -46,10 +46,10 @@ class ShippingForm extends React.Component {
 
                         <Form.Group as={Col} controlId="formGridState">
                         <Form.Label>State</Form.Label>
-                        <Form.Select defaultValue="Choose...">
+                        {/* <Form.Select defaultValue="Choose..."> */}
                             {/* <option>Choose...</option>
                             <option>...</option> */}
-                        </Form.Select>
+                        {/* </Form.Select> */}
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formGridZip">

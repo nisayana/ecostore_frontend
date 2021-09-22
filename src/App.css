@@ -177,7 +177,7 @@ button:hover {
   border-radius: 5px;
   width: 120px;
   height: 20px;
-  color: whitesmoke;
+  color: #f5f5f5;
   font-size: 14px;
 }
 
@@ -263,4 +263,10 @@ button:hover {
   grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
 
+}
+
+#updateProfile {
+  width: 50%;
+  display: block;
+  text-align: center;
 }

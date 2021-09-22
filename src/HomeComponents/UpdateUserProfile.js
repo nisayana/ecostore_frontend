@@ -35,9 +35,8 @@ class UpdateUserProfile extends React.Component {
         let {username, password, email, address, city, state, zip, first_name, last_name} = this.state
 
         return (
-
-            <div>
-        <h2 id='registerTitleForm'>Update Information</h2>
+        <div id="updateProfile">
+          <h2>Update Information</h2>
           <Form
             onSubmit={this.handleSubmit}
             id='registerForm'>
