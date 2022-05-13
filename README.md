@@ -1,7 +1,5 @@
 # Ecostore
 
-![home](home.png)
-
 Ecostore is a shopping website created with React.Js in the frontend and Ruby on Rails as API in the backend that allows users to buy eco products.
 
 ### Features
